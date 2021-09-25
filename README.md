@@ -12,24 +12,25 @@ Sirve para generar/buildear/correr el proyecto en general, pero tambien sirve pa
 De todos modos en 2.1 hay otra opcion que tambien recomiendo.
 
 ### 1.1.2 Descarga/Instalación
-  
-  - Se descarga de https://nodejs.org/es/ --> descargar la recomendada.
-  - Instalar del .exe y seguir los pasos.
-  - Para chequear que se instaló correctamente correr en la terminal:
-    > npm -v       // debería salirles la versión que instalaron
+
+- Se descarga de https://nodejs.org/es/ --> descargar la recomendada.
+- Instalar del .exe y seguir los pasos.
+- Para chequear que se instaló correctamente correr en la terminal:
+  > npm -v // debería salirles la versión que instalaron
 
 # 2. Instalaciones Recomendadas
 
 ## 2.1 Yarn
 
 Es practicamente parecido a NodeJs, de hecho dejo los comandos en el apartado 3
-  - Descarga desde la terminal poniendo la linea:
-    > npm install -g yarn
-    > yarn -v     // para ver que se instaló bien
+
+- Descarga desde la terminal poniendo la linea:
+  > npm install -g yarn
+  > yarn -v // para ver que se instaló bien
 
 ## 2.2 Visual Studio Code
 
-Yo lo uso para levantar web porque podes agarrar varios plugins que te deja meterle y te ayudan mucho para codear. 
+Yo lo uso para levantar web porque podes agarrar varios plugins que te deja meterle y te ayudan mucho para codear.
 
 ### 2.2.1 Plugins
 
@@ -41,15 +42,15 @@ La idea es que si usan este IDE metan estos plugins y para descargarlos a la izq
 
 Ya el nombre lo indica pero tengo entendido que les va a venir en inglés, asi que si les pinta pongan ese plugin y reinicien el IDE.
 
-#### 2.2.1.2 ES7 React/Redux/GraphQL/React-Native snippets 
+#### 2.2.1.2 ES7 React/Redux/GraphQL/React-Native snippets
 
 Hay varios snippets para los lenguajes de React/Redux/GraphQL/React-Native que te crean codigo base y la verdad que ayuda mucho.
 Tambien te van tirando tipo ayudas cuando vas codeando, te importa los componentes si los encuentra.
-  
+
 #### 2.2.1.3 Prettier - Code formatter
 
-Sirve para reformatear el codigo segun el tipo de lenguaje que se usa, esto lo podes configurar para que lo haga cada vez que guardas (que diria que lo hagan),  porque te despreocupas de que quede bien formateado ya que lo hace solo.
-  
+Sirve para reformatear el codigo segun el tipo de lenguaje que se usa, esto lo podes configurar para que lo haga cada vez que guardas (que diria que lo hagan), porque te despreocupas de que quede bien formateado ya que lo hace solo.
+
 Para setearlo tienen que ir a Archivo > Preferencias > Configuración y en el buscador ponen "format", y uno de las configuraciones que les sale se llama "Editor: Format On Save" , le tildan esta opcion y listo.
 
 Si cuando guardan un archivo no se les formatea hagan "click derecho" > "Dar formato al documento con" > "Configurar el formateador predeterminado" y ahi seleccionan Prettier, y ahora si les deberia reformatear el codigo cada vez que guarden un archivo.
@@ -60,9 +61,9 @@ Practicamente es la misma idea que el de React (2.2.1.2) y demás, te va dando a
 
 #### 2.2.1.5 vscode-styled-components
 
-Este sirve para una libreria en particular que se usa (styled-components) y es de la misma onda que el de HTML/CSS que mostré en el 2.2.1.4, este es solo para ayudas de las propertys de CSS, te va tirando valores y nombres de las mismas. 
+Este sirve para una libreria en particular que se usa (styled-components) y es de la misma onda que el de HTML/CSS que mostré en el 2.2.1.4, este es solo para ayudas de las propertys de CSS, te va tirando valores y nombres de las mismas.
 
-Basicamente la libreria  es que podes crear componentes con style de CSS , donde le decis que un componente será del tipo "X" (con X siendo algo de HTML o componentes de REACT; ej: div, h1, p, a, button, etc...).
+Basicamente la libreria es que podes crear componentes con style de CSS , donde le decis que un componente será del tipo "X" (con X siendo algo de HTML o componentes de REACT; ej: div, h1, p, a, button, etc...).
 
 # 3. Librerias
 
@@ -73,13 +74,9 @@ En este apartado presentamos las librerias que se usan en este proyecto.
 ## 3.1.1 Resumen con ejemplo
 
 Un poco ya lo conté antes y es tal cual lo explique. Creas componentes de react con style de CSS diciendole el tipo de HTML que es o que componente es, un ejemplo sería:
-        ** HTML **
-        export const ImgLogo = styled.img`
-          margin-right: 0.5rem;
-          height: 40px;
-          width: 40px;
-        `;
-        
+** HTML **
+export const ImgLogo = styled.img` margin-right: 0.5rem; height: 40px; width: 40px; `;
+
         ** REACT **
         export const NavBtnLink = styled(Link)`
           display: flex;
@@ -92,6 +89,7 @@ Un poco ya lo conté antes y es tal cual lo explique. Creas componentes de react
           border: none;
           outline: none;
         `;
+
 Entonces el componente de React es ImgLogo y es un img de HTML. Luego dentro de `` se le puede poner propertys tipicas de CSS. Lo mismo sucede con NavBtnLink que es de tipo Link con ciertos estilos de CSS.
 
 ## 3.1.2 Leer más
@@ -106,7 +104,7 @@ Esta libreria sirve para los links que usaremos, osea para redirigir la pagina a
 
 ## 3.2.2 Leer más
 
-Para ver que componentes trae vayan https://www.npmjs.com/package/react-router-dom o https://www.npmjs.com/package/react-router-dom, o busquen esta libreria en internet que hay banda de ejemplos y de como usarlo. 
+Para ver que componentes trae vayan https://www.npmjs.com/package/react-router-dom o https://www.npmjs.com/package/react-router-dom, o busquen esta libreria en internet que hay banda de ejemplos y de como usarlo.
 
 # 3.3 react-icons
 
@@ -135,20 +133,20 @@ La pagina es https://next.material-ui.com/
 # 4.1 Comandos utilizados
 
 # 4.1.1 Creacion de la app
-  - 1er template
-    > npx/yarn create-react-app my-app: Te crea un template base con lo justo y necesario para levantarla rapido
-  - 2do template
-    > npx create-react-app my-app --template [template-name]: lo mismo que antes pero le podes decir que template queres usar:
-      . typescript: crea una app con ese tipo
-      . --use-npm: te hace que en vez de usar yarn para los scripts te ponga npm
-      . cra-template-pwa: esto te crea un app de PWA, basicamente que podes descargarte la APP de la web y dejarla en la maquina. Si pones esto te sale un iconito arriba a la          derecha (una pc con una flecha para abajo) y te deja instalarla.
-      
-      Estos te tiran mas cosas respecto del 1ero, es bastante mas completo, de hecho yo use el 1ero y ahora me falta el Service Worker, que los del 2do caso me lo train ya             prearmado, lo cual ahora tengo que configurarlo. No se que sucede si mando alguno de esos comandos (ej: cra-template-pwa; que puede estar bueno porque tambien podes             hacerlo en el celu y te queda la app), esperemos que no me borre lo que tengo y solo me los añada o al menos eso espero que haga.
+
+- 1er template
+  > npx/yarn create-react-app my-app: Te crea un template base con lo justo y necesario para levantarla rapido
+- 2do template
+  > npx create-react-app my-app --template [template-name]: lo mismo que antes pero le podes decir que template queres usar:
+  > . typescript: crea una app con ese tipo
+  > . --use-npm: te hace que en vez de usar yarn para los scripts te ponga npm
+  > . cra-template-pwa: esto te crea un app de PWA, basicamente que podes descargarte la APP de la web y dejarla en la maquina. Si pones esto te sale un iconito arriba a la derecha (una pc con una flecha para abajo) y te deja instalarla.
+  Estos te tiran mas cosas respecto del 1ero, es bastante mas completo, de hecho yo use el 1ero y ahora me falta el Service Worker, que los del 2do caso me lo train ya prearmado, lo cual ahora tengo que configurarlo. No se que sucede si mando alguno de esos comandos (ej: cra-template-pwa; que puede estar bueno porque tambien podes hacerlo en el celu y te queda la app), esperemos que no me borre lo que tengo y solo me los añada o al menos eso espero que haga.
 
 # 4.1.2 Buildear la app
 
-  > cd my-app
-  > yarn/npm build
+> cd my-app
+> yarn build
 
 Te buildea la app basicamente, puede servir para en vez de mostrar todos los elementos de la web te muestre solo los que genera el build (porque genera una carpeta con todos lo que necesita).
 
@@ -156,8 +154,8 @@ Te buildea la app basicamente, puede servir para en vez de mostrar todos los ele
 
 Si queremos levantar la app, podemos hacer lo siguiente
 
-  > cd my-app
-  > yarn/npm start
+> cd my-app
+> yarn start
 
 Te abre directo el localhost:3000 para esta version, mas adelante deberia abrir heroku.
 
