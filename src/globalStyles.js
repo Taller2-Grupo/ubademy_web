@@ -1,4 +1,5 @@
 import styled, { createGlobalStyle } from "styled-components";
+//import { Button } from "@mui/material";
 
 const GlobalStyle = createGlobalStyle`
     *{
@@ -24,22 +25,23 @@ export const Container = styled.div`
   }
 `;
 
-export const Button = styled.button`
+export const ButtonUbademy = styled.button`
   border-radius: 4px;
-  background: ${({ primary }) => (primary ? "#74BBE6" : "#038ECB")};
+  background-color: ${({ variant }) =>
+    variant === "outlined" ? "transparent" : "#038ECB"};
   white-space: nowrap;
-  padding: ${({ big }) => (big ? "12px 64px" : "10px 20px")};
-  color: ${({ primary }) => (primary ? "#101522" : "#fff")};
-  font-size: ${({ fontBig }) => (fontBig ? "20px" : "16px")};
-  outline: none;
-  border: none;
+  padding: ${({ size }) => (size === "large" ? "12px 64px" : "10px 20px")};
+  color: ${({ variant }) => (variant === "outlined" ? "#038ECB" : "#fff")};
+  font-size: ${({ size }) => (size === "large" ? "20px" : "16px")};
+  border: ${({ variant }) =>
+    variant === "outlined" ? "1px solid #038ECB" : "none"};
   cursor: pointer;
+  letter-spacing: 0.02857em;
 
   &:hover {
-    transition: all 0.3s ease-out;
-    //background: #fff;
-    color: ${({ primary }) => (primary ? "#fff" : "#101522")};
-    background: ${({ primary }) => (primary ? "#038ECB" : "#74BBE6")};
+    opacity: ${({ variant }) => (variant === "outlined" ? 1 : 0.8)};
+    color: #fff;
+    background-color: #038ecb;
   }
 
   @media screen and (max-width: 960px) {

@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Container, Button } from "../../globalStyles";
+import { Container, ButtonUbademy } from "../../globalStyles";
 import {
   InfoSec,
   InfoRow,
@@ -38,10 +38,10 @@ const InfoSection = ({
                 <TopLine lightTopLine={lightTopLine}>{topLine}</TopLine>
                 <Heading lightText={lightText}>{headLine}</Heading>
                 <Subtitle lightTextDesc={lightTextDesc}>{description}</Subtitle>
-                <Link to="/sign-up">
-                  <Button big fontBig primary={primary}>
+                <Link to="/sign-up" style={{ textDecoration: "none" }}>
+                  <ButtonUbademy variant="contained">
                     {buttonLabel}
-                  </Button>
+                  </ButtonUbademy>
                 </Link>
               </TextWrapper>
             </InfoColumn>

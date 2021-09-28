@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import logo from "../../images/ubademy.png";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { IconContext } from "react-icons/lib";
-import { Button } from "../../globalStyles";
+import { ButtonUbademy } from "../../globalStyles";
 import {
   Nav,
   NavBarContainer,
@@ -67,13 +67,31 @@ const NavBar = () => {
               <NavItemBtn>
                 {button ? (
                   <NavBtnLink to="/sign-up">
-                    <Button primary>Sign Up</Button>
+                    <ButtonUbademy variant="outlined" size="medium">
+                      Sign Up
+                    </ButtonUbademy>
                   </NavBtnLink>
                 ) : (
                   <NavBtnLink to="/sign-up">
-                    <Button fontBig primary>
+                    <ButtonUbademy variant="outlined" size="large">
                       Sign Up
-                    </Button>
+                    </ButtonUbademy>
+                  </NavBtnLink>
+                )}
+              </NavItemBtn>
+
+              <NavItemBtn>
+                {button ? (
+                  <NavBtnLink to="/login">
+                    <ButtonUbademy variant="contained" size="medium">
+                      Login
+                    </ButtonUbademy>
+                  </NavBtnLink>
+                ) : (
+                  <NavBtnLink to="/login">
+                    <ButtonUbademy variant="contained" size="large">
+                      Login
+                    </ButtonUbademy>
                   </NavBtnLink>
                 )}
               </NavItemBtn>
