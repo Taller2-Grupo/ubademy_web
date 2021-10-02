@@ -1,0 +1,18 @@
+{
+  "short_name": "Ubademy",
+  "name": "Ubademy Web",
+  "description": "Esta es la web de Ubademy para Administradores",
+  "start_url": "./",
+  "lang": "es-AR",
+  "display": "standalone",
+  "theme_color": "#333333",
+  "background_color": "#333333",
+  "icons": [
+    {
+      "src": "./assets/ubademy.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable any"
+    }
+  ]
+}
