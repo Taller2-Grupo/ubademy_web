@@ -9,13 +9,7 @@
   "background_color": "#333333",
   "icons": [
     {
-      "src": "./assets/ubademy-icon-192.png",
-      "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "maskable any"
-    },
-    {
-      "src": "./assets/ubademy-icon-512.png",
+      "src": "./assets/ubademy.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable any"
