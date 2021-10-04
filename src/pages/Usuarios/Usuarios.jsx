@@ -1,11 +1,11 @@
 import React from "react";
-import { homeObjThree } from "../Data";
+import { homeUsuarios } from "../Data";
 import { InfoSection } from "../../components";
 
 const Usuarios = () => {
   return (
     <>
-      <InfoSection {...homeObjThree} />
+      <InfoSection {...homeUsuarios} />
     </>
   );
 };

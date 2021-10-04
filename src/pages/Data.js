@@ -2,7 +2,7 @@ import homeImagen from "../images/home-imagen.svg";
 import cursosImagen from "../images/cursos-imagen.svg";
 import usuariosImagen from "../images/users-imagen.svg";
 
-export const homeObjOne = {
+export const homeSignUp = {
   primary: true,
   lightBg: false,
   imgStart: true,
@@ -17,9 +17,10 @@ export const homeObjOne = {
   img: homeImagen,
   alt: "Image Home",
   start: true,
+  to: "/sign-up",
 };
 
-export const homeObjTwo = {
+export const homeCursos = {
   primary: false,
   lightBg: true,
   imgStart: false,
@@ -34,9 +35,10 @@ export const homeObjTwo = {
   img: cursosImagen,
   alt: "Imagen Cursos",
   start: false,
+  to: "/cursos",
 };
 
-export const homeObjThree = {
+export const homeUsuarios = {
   primary: true,
   lightBg: false,
   imgStart: true,
@@ -51,4 +53,5 @@ export const homeObjThree = {
   img: usuariosImagen,
   alt: "Imagen Usuarios",
   start: true,
+  to: "/sign-up",
 };
