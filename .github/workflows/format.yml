@@ -1,11 +1,9 @@
 name: Verificar el código
 on:
   push:
-    branches:
-      - master
+    branches: [master]
   pull_request:
-    branches:
-      - master
+    branches: [master]
 jobs:
   build:
     name: Verificar el código
