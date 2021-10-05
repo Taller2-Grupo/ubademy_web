@@ -16,4 +16,4 @@ jobs:
       - name: Build project
         run: yarn build
       - name: Test
-        run: yarn test
+        run: yarn test -o --watch
