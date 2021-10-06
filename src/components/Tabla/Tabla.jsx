@@ -126,16 +126,16 @@ const Tabla = ({ headCells, rows, titulo }) => {
                         scope="row"
                         padding="none"
                         align="center"
-                      >
-                        {row.id}
+                      ></TableCell>
+                      <TableCell align="left">{row.titulo}</TableCell>
+                      <TableCell align="left">{row.descripcion}</TableCell>
+                      <TableCell align="left">{row.estado}</TableCell>
+                      <TableCell align="left">{row.fecha_creacion}</TableCell>
+                      <TableCell align="left">
+                        {row.fecha_actualizacion == null
+                          ? ""
+                          : row.fecha_actualizacion}
                       </TableCell>
-                      <TableCell align="left">{row.name}</TableCell>
-                      <TableCell align="left">{row.username}</TableCell>
-                      <TableCell align="left">{row.email}</TableCell>
-                      <TableCell align="left">{row.address.street}</TableCell>
-                      <TableCell align="left">{row.phone}</TableCell>
-                      <TableCell align="left">{row.website}</TableCell>
-                      <TableCell align="left">{row.company.name}</TableCell>
                     </TableRow>
                   );
                 })}

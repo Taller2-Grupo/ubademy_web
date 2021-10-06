@@ -1,14 +1,19 @@
 import React, { useState, useEffect } from "react";
 import Tabla from "../../components/Tabla/Tabla";
-import { headCells } from "./Data";
+import { headCells, endPointCursos } from "./Data";
 
 const Cursos = () => {
   const [cursos, setCursos] = useState([]);
 
   useEffect(() => {
-    fetch("https://jsonplaceholder.typicode.com/users")
+    fetch(endPointCursos, {
+      "Access-Control-Allow-Origin": "*",
+    })
       .then((response) => response.json())
-      .then((json) => setCursos(json));
+      .then((json) => {
+        console.log(cursos);
+        setCursos(json);
+      });
   }, [cursos]);
 
   return (

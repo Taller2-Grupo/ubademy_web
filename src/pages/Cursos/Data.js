@@ -1,50 +1,46 @@
+export const endPointCursos = "https://ubademy-back.herokuapp.com/cursos";
+
 export const headCells = [
   {
-    id: "userId",
+    id: "id",
     numeric: false,
     disablePadding: false,
     label: "ID",
   },
   {
-    id: "name",
+    id: "id_creador",
     numeric: false,
-    disablePadding: true,
-    label: "Nombre",
+    disablePadding: false,
+    label: "ID Creador",
   },
   {
-    id: "username",
+    id: "titulo",
     numeric: false,
     disablePadding: true,
-    label: "Username",
+    label: "Título",
   },
   {
-    id: "email",
+    id: "descripcion",
     numeric: false,
     disablePadding: true,
-    label: "Email",
+    label: "Descripción",
   },
   {
-    id: "address",
+    id: "estado",
     numeric: false,
     disablePadding: true,
-    label: "Dirección",
+    label: "Estado",
   },
   {
-    id: "phone",
+    id: "fecha_creacion",
     numeric: false,
     disablePadding: true,
-    label: "Teléfono",
+    label: "Fecha Alta",
   },
   {
-    id: "website",
+    id: "fecha_actualizacion",
     numeric: false,
     disablePadding: true,
-    label: "Website",
-  },
-  {
-    id: "company",
-    numeric: false,
-    disablePadding: true,
-    label: "Compañía",
+    label: "Fecha Modificación",
   },
 ];
