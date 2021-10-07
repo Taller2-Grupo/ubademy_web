@@ -1,4 +1,5 @@
 name: Formatear el código
+
 on:
   push:
     branches: [master]
