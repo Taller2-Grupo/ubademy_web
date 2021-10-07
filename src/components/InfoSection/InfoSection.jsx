@@ -11,7 +11,7 @@ import {
   Subtitle,
   ImgWrapper,
   Img,
-} from "../../components/InfoSection/InfoSectionElements";
+} from "./InfoSectionElements";
 
 const InfoSection = ({
   primary,
@@ -27,6 +27,7 @@ const InfoSection = ({
   img,
   alt,
   start,
+  to,
 }) => {
   return (
     <>
@@ -38,7 +39,7 @@ const InfoSection = ({
                 <TopLine lightTopLine={lightTopLine}>{topLine}</TopLine>
                 <Heading lightText={lightText}>{headLine}</Heading>
                 <Subtitle lightTextDesc={lightTextDesc}>{description}</Subtitle>
-                <Link to="/sign-up" style={{ textDecoration: "none" }}>
+                <Link to={to} style={{ textDecoration: "none" }}>
                   <ButtonUbademy variant="contained">
                     {buttonLabel}
                   </ButtonUbademy>

@@ -2,7 +2,7 @@ import homeImagen from "../images/home-imagen.svg";
 import cursosImagen from "../images/cursos-imagen.svg";
 import usuariosImagen from "../images/users-imagen.svg";
 
-export const homeObjOne = {
+export const homeSignUp = {
   primary: true,
   lightBg: false,
   imgStart: true,
@@ -17,9 +17,10 @@ export const homeObjOne = {
   img: homeImagen,
   alt: "Image Home",
   start: true,
+  to: "/sign-up",
 };
 
-export const homeObjTwo = {
+export const homeCursos = {
   primary: false,
   lightBg: true,
   imgStart: false,
@@ -30,13 +31,14 @@ export const homeObjTwo = {
   lightTextDesc: false,
   description:
     "Esta aplicación les permitirá todo lo correspondiente a la administración de cursos: Alta, Baja, Modificación y Vista de los mismos. A su vez podrá ver algunas métricas correspondientes",
-  buttonLabel: "Get Started",
+  buttonLabel: "Ver Cursos",
   img: cursosImagen,
   alt: "Imagen Cursos",
   start: false,
+  to: "/cursos",
 };
 
-export const homeObjThree = {
+export const homeUsuarios = {
   primary: true,
   lightBg: false,
   imgStart: true,
@@ -47,8 +49,9 @@ export const homeObjThree = {
   lightTextDesc: true,
   description:
     "Esta aplicación les permitirá todo lo correspondiente a la administración de usuarios: Alta, Baja, Modificación y Vista de los mismos. A su vez podrá ver algunas métricas correspondientes",
-  buttonLabel: "Get Started",
+  buttonLabel: "Ver Usuarios",
   img: usuariosImagen,
   alt: "Imagen Usuarios",
   start: true,
+  to: "/sign-up",
 };
