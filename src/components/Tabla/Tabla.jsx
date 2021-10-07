@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -15,34 +15,35 @@ import HeaderTabla from "./HeaderTabla";
 import { stableSort, getComparator } from "./TablaElements";
 
 const Tabla = ({ headCells, rows, titulo }) => {
-  const [order, setOrder] = React.useState("asc");
-  const [orderBy, setOrderBy] = React.useState("calories");
-  const [selected, setSelected] = React.useState([]);
-  const [page, setPage] = React.useState(0);
-  const [dense, setDense] = React.useState(false);
-  const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  const [order, setOrder] = useState("asc");
+  const [orderBy, setOrderBy] = useState("calories");
+  const [selected, setSelected] = useState([]);
+  const [page, setPage] = useState(0);
+  const [dense, setDense] = useState(false);
+  const [rowsPerPage, setRowsPerPage] = useState(5);
 
-  const handleRequestSort = (event, property) => {
+  const handleRequestSort = (property) => {
     const isAsc = orderBy === property && order === "asc";
     setOrder(isAsc ? "desc" : "asc");
     setOrderBy(property);
   };
 
-  const handleSelectAllClick = (event) => {
-    if (event.target.checked) {
-      const newSelecteds = rows.map((n) => n.name);
-      setSelected(newSelecteds);
+  const handleSelectAllClick = ({ target }) => {
+    if (target.checked) {
+      setSelected(rows.map((n) => n.id));
       return;
     }
     setSelected([]);
+    console.log(selected);
   };
 
-  const handleClick = (event, name) => {
-    const selectedIndex = selected.indexOf(name);
+  const handleClick = (id) => {
+    const selectedIndex = selected.indexOf(id);
+
     let newSelected = [];
 
     if (selectedIndex === -1) {
-      newSelected = newSelected.concat(selected, name);
+      newSelected = newSelected.concat(selected, id);
     } else if (selectedIndex === 0) {
       newSelected = newSelected.concat(selected.slice(1));
     } else if (selectedIndex === selected.length - 1) {
@@ -53,24 +54,25 @@ const Tabla = ({ headCells, rows, titulo }) => {
         selected.slice(selectedIndex + 1)
       );
     }
-
     setSelected(newSelected);
   };
 
-  const handleChangePage = (event, newPage) => {
+  const handleChangePage = (newPage) => {
     setPage(newPage);
   };
 
-  const handleChangeRowsPerPage = (event) => {
-    setRowsPerPage(parseInt(event.target.value, 10));
+  const handleChangeRowsPerPage = ({ target }) => {
+    setRowsPerPage(parseInt(target.value, 10));
     setPage(0);
   };
 
-  const handleChangeDense = (event) => {
-    setDense(event.target.checked);
+  const handleChangeDense = ({ target }) => {
+    setDense(target.checked);
   };
 
-  const isSelected = (name) => selected.indexOf(name) !== -1;
+  const isSelected = (id) => {
+    return selected.indexOf(id) !== -1;
+  };
 
   const emptyRows =
     page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
@@ -104,7 +106,7 @@ const Tabla = ({ headCells, rows, titulo }) => {
                   return (
                     <TableRow
                       hover
-                      onClick={(event) => handleClick(event, row.id)}
+                      onClick={(event) => handleClick(row.id)}
                       role="checkbox"
                       aria-checked={isItemSelected}
                       tabIndex={-1}
@@ -114,19 +116,12 @@ const Tabla = ({ headCells, rows, titulo }) => {
                       <TableCell padding="checkbox">
                         <Checkbox
                           color="primary"
-                          checked={isItemSelected}
+                          checked={isSelected(row.id)}
                           inputProps={{
                             "aria-labelledby": labelId,
                           }}
                         />
                       </TableCell>
-                      <TableCell
-                        component="th"
-                        id={labelId}
-                        scope="row"
-                        padding="none"
-                        align="center"
-                      ></TableCell>
                       <TableCell align="left">{row.titulo}</TableCell>
                       <TableCell align="left">{row.descripcion}</TableCell>
                       <TableCell align="left">{row.estado}</TableCell>
@@ -163,7 +158,7 @@ const Tabla = ({ headCells, rows, titulo }) => {
       </Paper>
       <FormControlLabel
         control={<Switch checked={dense} onChange={handleChangeDense} />}
-        label="Dense padding"
+        label="Condensar tabla"
       />
     </Box>
   );

@@ -11,10 +11,9 @@ const Cursos = () => {
     })
       .then((response) => response.json())
       .then((json) => {
-        console.log(cursos);
         setCursos(json);
       });
-  }, [cursos]);
+  }, []);
 
   return (
     <>
