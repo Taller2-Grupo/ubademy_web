@@ -16,13 +16,13 @@ import { stableSort, getComparator } from "./TablaElements";
 
 const Tabla = ({ headCells, rows, titulo }) => {
   const [order, setOrder] = useState("asc");
-  const [orderBy, setOrderBy] = useState("calories");
+  const [orderBy, setOrderBy] = useState(headCells[0].id);
   const [selected, setSelected] = useState([]);
   const [page, setPage] = useState(0);
   const [dense, setDense] = useState(false);
   const [rowsPerPage, setRowsPerPage] = useState(5);
 
-  const handleRequestSort = (property) => {
+  const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === "asc";
     setOrder(isAsc ? "desc" : "asc");
     setOrderBy(property);
@@ -34,7 +34,6 @@ const Tabla = ({ headCells, rows, titulo }) => {
       return;
     }
     setSelected([]);
-    console.log(selected);
   };
 
   const handleClick = (id) => {
@@ -57,7 +56,7 @@ const Tabla = ({ headCells, rows, titulo }) => {
     setSelected(newSelected);
   };
 
-  const handleChangePage = (newPage) => {
+  const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
 
