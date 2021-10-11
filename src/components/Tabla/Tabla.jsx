@@ -13,6 +13,7 @@ import Switch from "@mui/material/Switch";
 import ToolbarTabla from "./ToolbarTabla";
 import HeaderTabla from "./HeaderTabla";
 import { stableSort, getComparator } from "./TablaElements";
+import dateFormat from "dateformat";
 
 const Tabla = ({ headCells, rows, titulo }) => {
   const [order, setOrder] = useState("asc");
@@ -124,7 +125,9 @@ const Tabla = ({ headCells, rows, titulo }) => {
                       <TableCell align="left">{row.titulo}</TableCell>
                       <TableCell align="left">{row.descripcion}</TableCell>
                       <TableCell align="left">{row.estado}</TableCell>
-                      <TableCell align="left">{row.fecha_creacion}</TableCell>
+                      <TableCell align="left">
+                        {dateFormat(row.fecha_creacion, "yyyy-mm-dd hh:MM")}
+                      </TableCell>
                       <TableCell align="left">
                         {row.fecha_actualizacion == null
                           ? ""
