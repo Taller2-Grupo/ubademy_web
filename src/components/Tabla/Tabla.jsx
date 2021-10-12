@@ -131,7 +131,10 @@ const Tabla = ({ headCells, rows, titulo }) => {
                       <TableCell align="left">
                         {row.fecha_actualizacion == null
                           ? ""
-                          : row.fecha_actualizacion}
+                          : dateFormat(
+                              row.fecha_actualizacion,
+                              "yyyy-mm-dd hh:MM"
+                            )}
                       </TableCell>
                     </TableRow>
                   );
