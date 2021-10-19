@@ -1,10 +1,11 @@
 import React from "react";
 import { homeSignUp, homeCursos, homeUsuarios } from "../Data";
-import { InfoSection } from "../../components";
+import { InfoSection, NavBar } from "../../components";
 
 const Home = () => {
   return (
     <>
+      <NavBar />
       <InfoSection {...homeSignUp} />
       <InfoSection {...homeCursos} />
       <InfoSection {...homeUsuarios} />
