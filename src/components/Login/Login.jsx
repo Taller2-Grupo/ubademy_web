@@ -12,7 +12,17 @@ import {
   Form,
 } from "./LoginElements";
 
+import GoogleButton from "react-google-button";
+import { useDispatch } from "react-redux";
+import { googleLogin } from "../../actions/auth";
+
 const Login = () => {
+  const dispatch = useDispatch();
+
+  const handleGoogleLogin = () => {
+    dispatch(googleLogin("12345", "Francisco"));
+  };
+
   return (
     <>
       <Container>
@@ -26,6 +36,9 @@ const Login = () => {
               <FormLabel htmlFor="for">Contraseña</FormLabel>
               <FormInput type="password" required></FormInput>
               <FormButton type="submit">Login</FormButton>
+              <br />
+              <GoogleButton onClick={handleGoogleLogin} />
+              <br />
               <Text>Olvidaste tu contraseña?</Text>
             </Form>
           </FormContent>
