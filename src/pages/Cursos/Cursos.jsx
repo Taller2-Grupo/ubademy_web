@@ -2,18 +2,24 @@ import React, { useState, useEffect } from "react";
 import Tabla from "../../components/Tabla/Tabla";
 import { headCells } from "./Data";
 import { obtenerCursos } from "../../services/Cursos";
+import CircleProgressBar from "../../components/Feedback/CircleProgressBar";
 import { NavBar } from "../../components";
 
 const Cursos = () => {
   const [cursos, setCursos] = useState([]);
+  const [success, setSuccess] = useState(false);
 
   useEffect(() => {
-    obtenerCursos().then((res) => setCursos(res));
+    obtenerCursos().then((res) => {
+      setCursos(res);
+      setSuccess(true);
+    });
   }, []);
 
   return (
     <>
       <NavBar />
+      <CircleProgressBar success={success} />
       <Tabla headCells={headCells} rows={cursos} titulo="Cursos" />
     </>
   );
