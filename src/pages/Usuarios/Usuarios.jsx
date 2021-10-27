@@ -1,7 +1,6 @@
 import React from "react";
 import { homeUsuarios } from "../Data";
-import { InfoSection } from "../../components";
-import { NavBar } from "../../components";
+import { InfoSection, NavBar } from "../../components";
 
 const Usuarios = () => {
   return (

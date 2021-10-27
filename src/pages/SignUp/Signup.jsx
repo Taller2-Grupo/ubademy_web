@@ -6,7 +6,6 @@ import { NavBar } from "../../components";
 const SignUp = () => {
   return (
     <>
-      <NavBar />
       <InfoSection {...homeSignUp} />
     </>
   );

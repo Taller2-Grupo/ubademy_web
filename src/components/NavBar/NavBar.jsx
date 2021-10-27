@@ -15,6 +15,8 @@ import {
   NavItemBtn,
   ImgLogo,
 } from "./NavBarElements";
+import { useDispatch } from "react-redux";
+import { logout } from "../../actions/auth";
 
 const NavBar = () => {
   const [click, setClick] = useState(false);
@@ -37,6 +39,11 @@ const NavBar = () => {
   }, []);
 
   window.addEventListener("resize", showButton);
+
+  const dispath = useDispatch();
+  const handleLogout = () => {
+    dispath(logout());
+  };
 
   return (
     <>
@@ -64,7 +71,7 @@ const NavBar = () => {
                 <NavLinks to="/usuarios">Usuarios</NavLinks>
               </NavItem>
 
-              <NavItemBtn>
+              {/* <NavItemBtn>
                 {button ? (
                   <NavBtnLink to="/sign-up">
                     <ButtonUbademy variant="outlined" size="medium">
@@ -78,19 +85,19 @@ const NavBar = () => {
                     </ButtonUbademy>
                   </NavBtnLink>
                 )}
-              </NavItemBtn>
+              </NavItemBtn> */}
 
-              <NavItemBtn>
+              <NavItemBtn onClick={handleLogout}>
                 {button ? (
-                  <NavBtnLink to="/login">
+                  <NavBtnLink to="/auth/login">
                     <ButtonUbademy variant="contained" size="medium">
-                      Login
+                      Logout
                     </ButtonUbademy>
                   </NavBtnLink>
                 ) : (
-                  <NavBtnLink to="/login">
+                  <NavBtnLink to="/auth/login">
                     <ButtonUbademy variant="contained" size="large">
-                      Login
+                      Logout
                     </ButtonUbademy>
                   </NavBtnLink>
                 )}
