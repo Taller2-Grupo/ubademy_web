@@ -71,22 +71,6 @@ const NavBar = () => {
                 <NavLinks to="/usuarios">Usuarios</NavLinks>
               </NavItem>
 
-              {/* <NavItemBtn>
-                {button ? (
-                  <NavBtnLink to="/sign-up">
-                    <ButtonUbademy variant="outlined" size="medium">
-                      Sign Up
-                    </ButtonUbademy>
-                  </NavBtnLink>
-                ) : (
-                  <NavBtnLink to="/sign-up">
-                    <ButtonUbademy variant="outlined" size="large">
-                      Sign Up
-                    </ButtonUbademy>
-                  </NavBtnLink>
-                )}
-              </NavItemBtn> */}
-
               <NavItemBtn onClick={handleLogout}>
                 {button ? (
                   <NavBtnLink to="/auth/login">

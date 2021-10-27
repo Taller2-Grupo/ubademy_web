@@ -55,7 +55,7 @@ const Login = () => {
           <FormContent>
             <Form action="#" onSubmit={handleEmailLogin}>
               <FormH1>Iniciar Sesión</FormH1>
-              <FormLabel htmlFor="for">Email</FormLabel>
+              <FormLabel htmlFor="email">Email</FormLabel>
               <FormInput
                 type="email"
                 required
@@ -63,7 +63,7 @@ const Login = () => {
                 value={email}
                 name="email"
               ></FormInput>
-              <FormLabel htmlFor="for">Contraseña</FormLabel>
+              <FormLabel htmlFor="password">Contraseña</FormLabel>
               <FormInput
                 type="password"
                 required
