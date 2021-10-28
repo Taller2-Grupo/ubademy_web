@@ -8,9 +8,9 @@ const LoginRouter = () => {
   return (
     <>
       <Switch>
-        <Route path="/cursos" component={Cursos}></Route>
-        <Route path="/usuarios" component={Usuarios}></Route>
-        <Route path="/" component={Home}></Route>
+        <Route path="/cursos" exact component={Cursos}></Route>
+        <Route path="/usuarios" exact component={Usuarios}></Route>
+        <Route path="/" exact component={Home}></Route>
       </Switch>
     </>
   );
