@@ -14,13 +14,15 @@ import {
   NavBtnLink,
   NavItemBtn,
   ImgLogo,
+  NavMenuUser,
 } from "./NavBarElements";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../actions/auth";
 
 const NavBar = () => {
   const [click, setClick] = useState(false);
   const [button, setButton] = useState(true);
+  const nameUser = useSelector((state) => state.auth.displayName);
 
   const handleClick = () => setClick(!click);
 
@@ -70,6 +72,11 @@ const NavBar = () => {
               <NavItem>
                 <NavLinks to="/usuarios">Usuarios</NavLinks>
               </NavItem>
+            </NavMenu>
+            <NavMenuUser>
+              <NavItem>
+                <NavLinks to="/">{nameUser}</NavLinks>
+              </NavItem>
 
               <NavItemBtn onClick={handleLogout}>
                 {button ? (
@@ -86,7 +93,7 @@ const NavBar = () => {
                   </NavBtnLink>
                 )}
               </NavItemBtn>
-            </NavMenu>
+            </NavMenuUser>
           </NavBarContainer>
         </Nav>
       </IconContext.Provider>

@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import GoogleButton from "react-google-button";
 
 export const Container = styled.div`
   min-height: 692px;
@@ -11,7 +12,7 @@ export const Container = styled.div`
   z-index: 0;
   overflow: hidden;
   background: linear-gradient(
-    140deg,
+    108deg,
     rgba(16, 21, 34, 1) 15%,
     rgba(116, 187, 230, 1) 100%
   );
@@ -77,6 +78,7 @@ export const FormH1 = styled.h1`
   font-weight: 400;
   text-align: center;
 `;
+
 export const FormLabel = styled.label`
   margin-bottom: 8px;
   font-size: 14px;
@@ -88,8 +90,8 @@ export const FormInput = styled.input`
   margin-bottom: 32px;
   border: none;
   border-radius: 4px;
-  color: #fff;
 `;
+
 export const FormButton = styled.button`
   background: #74bbe6;
   padding: 16px 0;
@@ -104,4 +106,8 @@ export const Text = styled.span`
   margin-top: 24px;
   color: #fff;
   font-size: 14px;
+`;
+
+export const GoogleLoginButton = styled(GoogleButton)`
+  width: auto;
 `;

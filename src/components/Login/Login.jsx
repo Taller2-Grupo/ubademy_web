@@ -10,9 +10,11 @@ import {
   Container,
   Icon,
   Form,
+  GoogleLoginButton,
 } from "./LoginElements";
+import Avatar from "@mui/material/Avatar";
+import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 
-import GoogleButton from "react-google-button";
 import { useDispatch } from "react-redux";
 import {
   googleLogin,
@@ -54,8 +56,13 @@ const Login = () => {
           <Icon to="/">Ubademy</Icon>
           <FormContent>
             <Form action="#" onSubmit={handleEmailLogin}>
+              <Avatar
+                sx={{ m: 1, bgcolor: "primary.main", justifySelf: "center" }}
+              >
+                <LockOutlinedIcon />
+              </Avatar>
               <FormH1>Iniciar Sesión</FormH1>
-              <FormLabel htmlFor="email">Email</FormLabel>
+              <FormLabel htmlFor="for">Email</FormLabel>
               <FormInput
                 type="email"
                 required
@@ -63,7 +70,7 @@ const Login = () => {
                 value={email}
                 name="email"
               ></FormInput>
-              <FormLabel htmlFor="password">Contraseña</FormLabel>
+              <FormLabel htmlFor="for">Contraseña</FormLabel>
               <FormInput
                 type="password"
                 required
@@ -72,10 +79,13 @@ const Login = () => {
                 name="password"
               ></FormInput>
               <FormButton type="submit">Login</FormButton>
+              <Text onCl>Olvidaste tu contraseña?</Text>
+
               <br />
-              <GoogleButton onClick={handleGoogleLogin} />
-              <br />
-              <Text>Olvidaste tu contraseña?</Text>
+              <GoogleLoginButton
+                label="Ingresar con Google"
+                onClick={handleGoogleLogin}
+              />
             </Form>
           </FormContent>
         </FormWrap>
