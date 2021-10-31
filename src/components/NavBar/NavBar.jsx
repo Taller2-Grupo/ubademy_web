@@ -14,11 +14,15 @@ import {
   NavBtnLink,
   NavItemBtn,
   ImgLogo,
+  NavMenuUser,
 } from "./NavBarElements";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../../actions/auth";
 
 const NavBar = () => {
   const [click, setClick] = useState(false);
   const [button, setButton] = useState(true);
+  const nameUser = useSelector((state) => state.auth.displayName);
 
   const handleClick = () => setClick(!click);
 
@@ -37,6 +41,11 @@ const NavBar = () => {
   }, []);
 
   window.addEventListener("resize", showButton);
+
+  const dispath = useDispatch();
+  const handleLogout = () => {
+    dispath(logout());
+  };
 
   return (
     <>
@@ -63,39 +72,28 @@ const NavBar = () => {
               <NavItem>
                 <NavLinks to="/usuarios">Usuarios</NavLinks>
               </NavItem>
-
-              <NavItemBtn>
-                {button ? (
-                  <NavBtnLink to="/sign-up">
-                    <ButtonUbademy variant="outlined" size="medium">
-                      Sign Up
-                    </ButtonUbademy>
-                  </NavBtnLink>
-                ) : (
-                  <NavBtnLink to="/sign-up">
-                    <ButtonUbademy variant="outlined" size="large">
-                      Sign Up
-                    </ButtonUbademy>
-                  </NavBtnLink>
-                )}
-              </NavItemBtn>
-
-              <NavItemBtn>
-                {button ? (
-                  <NavBtnLink to="/login">
-                    <ButtonUbademy variant="contained" size="medium">
-                      Login
-                    </ButtonUbademy>
-                  </NavBtnLink>
-                ) : (
-                  <NavBtnLink to="/login">
-                    <ButtonUbademy variant="contained" size="large">
-                      Login
-                    </ButtonUbademy>
-                  </NavBtnLink>
-                )}
-              </NavItemBtn>
             </NavMenu>
+            <NavMenuUser>
+              <NavItem>
+                <NavLinks to="/">{nameUser}</NavLinks>
+              </NavItem>
+
+              <NavItemBtn onClick={handleLogout}>
+                {button ? (
+                  <NavBtnLink to="/auth/login">
+                    <ButtonUbademy variant="contained" size="medium">
+                      Logout
+                    </ButtonUbademy>
+                  </NavBtnLink>
+                ) : (
+                  <NavBtnLink to="/auth/login">
+                    <ButtonUbademy variant="contained" size="large">
+                      Logout
+                    </ButtonUbademy>
+                  </NavBtnLink>
+                )}
+              </NavItemBtn>
+            </NavMenuUser>
           </NavBarContainer>
         </Nav>
       </IconContext.Provider>

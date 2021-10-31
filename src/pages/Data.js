@@ -17,7 +17,7 @@ export const homeSignUp = {
   img: homeImagen,
   alt: "Image Home",
   start: true,
-  to: "/sign-up",
+  to: "/login",
 };
 
 export const homeCursos = {
@@ -31,11 +31,11 @@ export const homeCursos = {
   lightTextDesc: false,
   description:
     "Esta aplicación les permitirá todo lo correspondiente a la administración de cursos: Alta, Baja, Modificación y Vista de los mismos. A su vez podrá ver algunas métricas correspondientes",
-  buttonLabel: "Ver Cursos",
+  buttonLabel: "Get Started",
   img: cursosImagen,
   alt: "Imagen Cursos",
   start: false,
-  to: "/cursos",
+  to: "/login",
 };
 
 export const homeUsuarios = {
@@ -49,9 +49,9 @@ export const homeUsuarios = {
   lightTextDesc: true,
   description:
     "Esta aplicación les permitirá todo lo correspondiente a la administración de usuarios: Alta, Baja, Modificación y Vista de los mismos. A su vez podrá ver algunas métricas correspondientes",
-  buttonLabel: "Ver Usuarios",
+  buttonLabel: "Get Started",
   img: usuariosImagen,
   alt: "Imagen Usuarios",
   start: true,
-  to: "/sign-up",
+  to: "/login",
 };

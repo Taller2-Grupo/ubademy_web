@@ -12,7 +12,7 @@ const Cursos = () => {
   useEffect(() => {
     obtenerCursos().then((res) => {
       setCursos(res);
-      setSuccess(true);
+      setSuccess((success) => !success);
     });
   }, []);
 
