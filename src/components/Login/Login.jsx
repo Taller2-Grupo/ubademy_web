@@ -79,7 +79,7 @@ const Login = () => {
                 name="password"
               ></FormInput>
               <FormButton type="submit">Login</FormButton>
-              <Text onCl>Olvidaste tu contraseña?</Text>
+              <Text>Olvidaste tu contraseña?</Text>
 
               <br />
               <GoogleLoginButton

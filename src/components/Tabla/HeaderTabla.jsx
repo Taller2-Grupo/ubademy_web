@@ -4,19 +4,10 @@ import TableCell from "@mui/material/TableCell";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import TableSortLabel from "@mui/material/TableSortLabel";
-import Checkbox from "@mui/material/Checkbox";
 import Box from "@mui/material/Box";
 import { visuallyHidden } from "@mui/utils";
 
-const HeaderTabla = ({
-  onSelectAllClick,
-  order,
-  orderBy,
-  numSelected,
-  rowCount,
-  onRequestSort,
-  headCells,
-}) => {
+const HeaderTabla = ({ order, orderBy, onRequestSort, headCells }) => {
   const createSortHandler = (property) => (event) => {
     onRequestSort(event, property);
   };
@@ -24,21 +15,10 @@ const HeaderTabla = ({
   return (
     <TableHead>
       <TableRow>
-        <TableCell padding="checkbox">
-          <Checkbox
-            color="primary"
-            indeterminate={numSelected > 0 && numSelected < rowCount}
-            checked={rowCount > 0 && numSelected === rowCount}
-            onChange={onSelectAllClick}
-            inputProps={{
-              "aria-label": "select all desserts",
-            }}
-          />
-        </TableCell>
         {headCells.map((headCell) => (
           <TableCell
             key={headCell.id}
-            align={headCell.numeric ? "right" : "left"}
+            align={headCell.type === "number" ? "right" : "left"}
             padding={headCell.disablePadding ? "none" : "normal"}
             sortDirection={orderBy === headCell.id ? order : false}
           >

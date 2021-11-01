@@ -47,7 +47,7 @@ const InfoSection = ({
               </TextWrapper>
             </InfoColumn>
             <InfoColumn>
-              <ImgWrapper start={start}>
+              <ImgWrapper start={start.toString()}>
                 <Img src={img} alt={alt} />
               </ImgWrapper>
             </InfoColumn>

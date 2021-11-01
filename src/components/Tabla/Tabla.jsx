@@ -7,10 +7,8 @@ import TableContainer from "@mui/material/TableContainer";
 import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import Checkbox from "@mui/material/Checkbox";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Switch from "@mui/material/Switch";
-import ToolbarTabla from "./ToolbarTabla";
 import HeaderTabla from "./HeaderTabla";
 import { stableSort, getComparator } from "./TablaElements";
 import dateFormat from "dateformat";
@@ -27,14 +25,6 @@ const Tabla = ({ headCells, rows, titulo }) => {
     const isAsc = orderBy === property && order === "asc";
     setOrder(isAsc ? "desc" : "asc");
     setOrderBy(property);
-  };
-
-  const handleSelectAllClick = ({ target }) => {
-    if (target.checked) {
-      setSelected(rows.map((n) => n.id));
-      return;
-    }
-    setSelected([]);
   };
 
   const handleClick = (id) => {
@@ -70,17 +60,12 @@ const Tabla = ({ headCells, rows, titulo }) => {
     setDense(target.checked);
   };
 
-  const isSelected = (id) => {
-    return selected.indexOf(id) !== -1;
-  };
-
   const emptyRows =
     page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
 
   return (
     <Box sx={{ width: "100%" }}>
       <Paper sx={{ width: "100%", mb: 2 }}>
-        <ToolbarTabla numSelected={selected.length} titulo={titulo} />
         <TableContainer>
           <Table
             sx={{ minWidth: 750 }}
@@ -88,54 +73,37 @@ const Tabla = ({ headCells, rows, titulo }) => {
             size={dense ? "small" : "medium"}
           >
             <HeaderTabla
-              numSelected={selected.length}
               order={order}
               orderBy={orderBy}
-              onSelectAllClick={handleSelectAllClick}
               onRequestSort={handleRequestSort}
-              rowCount={rows.length}
               headCells={headCells}
             />
             <TableBody>
               {stableSort(rows, getComparator(order, orderBy))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row, index) => {
-                  const isItemSelected = isSelected(row.id);
-                  const labelId = `enhanced-table-checkbox-${index}`;
-
                   return (
                     <TableRow
                       hover
                       onClick={(event) => handleClick(row.id)}
-                      role="checkbox"
-                      aria-checked={isItemSelected}
                       tabIndex={-1}
                       key={row.id}
-                      selected={isItemSelected}
                     >
-                      <TableCell padding="checkbox">
-                        <Checkbox
-                          color="primary"
-                          checked={isSelected(row.id)}
-                          inputProps={{
-                            "aria-labelledby": labelId,
-                          }}
-                        />
-                      </TableCell>
-                      <TableCell align="left">{row.titulo}</TableCell>
-                      <TableCell align="left">{row.descripcion}</TableCell>
-                      <TableCell align="left">{row.estado}</TableCell>
-                      <TableCell align="left">
-                        {dateFormat(row.fecha_creacion, "yyyy-mm-dd hh:MM")}
-                      </TableCell>
-                      <TableCell align="left">
-                        {row.fecha_actualizacion == null
-                          ? ""
-                          : dateFormat(
-                              row.fecha_actualizacion,
-                              "yyyy-mm-dd hh:MM"
-                            )}
-                      </TableCell>
+                      {headCells.map((column) => {
+                        return (
+                          <TableCell align="left">
+                            {column.type === "date"
+                              ? row[column.id] == null
+                                ? ""
+                                : dateFormat(row[column.id], "yyyy-mm-dd hh:MM")
+                              : column.type === "bool"
+                              ? row[column.id] === true
+                                ? column.trueValue
+                                : column.falseValue
+                              : row[column.id]}
+                          </TableCell>
+                        );
+                      })}
                     </TableRow>
                   );
                 })}
