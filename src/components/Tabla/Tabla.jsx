@@ -12,6 +12,7 @@ import Switch from "@mui/material/Switch";
 import HeaderTabla from "./HeaderTabla";
 import { stableSort, getComparator } from "./TablaElements";
 import dateFormat from "dateformat";
+import ToolbarTabla from "./ToolbarTabla";
 
 const Tabla = ({ headCells, rows, titulo }) => {
   const [order, setOrder] = useState("asc");
@@ -66,6 +67,7 @@ const Tabla = ({ headCells, rows, titulo }) => {
   return (
     <Box sx={{ width: "100%" }}>
       <Paper sx={{ width: "100%", mb: 2 }}>
+        <ToolbarTabla titulo={titulo} />
         <TableContainer>
           <Table
             sx={{ minWidth: 750 }}
