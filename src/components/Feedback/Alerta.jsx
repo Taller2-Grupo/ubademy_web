@@ -8,7 +8,13 @@ import CloseIcon from "@mui/icons-material/Close";
 const Alerta = ({ text, severity }) => {
   const [open, setOpen] = React.useState(true);
   return (
-    <Box sx={{ width: "100%" }}>
+    <Box
+      sx={{
+        width: "auto",
+        justifyContent: "center",
+        display: "flex",
+      }}
+    >
       <Collapse in={open}>
         <Alert
           action={
@@ -23,7 +29,6 @@ const Alerta = ({ text, severity }) => {
               <CloseIcon fontSize="inherit" />
             </IconButton>
           }
-          variant="outlined"
           severity={severity}
           sx={{ mb: 2 }}
         >

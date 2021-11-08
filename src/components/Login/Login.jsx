@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   FormButton,
   FormContent,
@@ -6,21 +6,16 @@ import {
   FormInput,
   FormLabel,
   FormWrap,
-  Text,
   Container,
   Icon,
   Form,
-  GoogleLoginButton,
 } from "./LoginElements";
 import Avatar from "@mui/material/Avatar";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 
-import { useDispatch } from "react-redux";
-import {
-  googleLogin,
-  emailAndPasswordLogin,
-  emailCorrecto,
-} from "../../actions/auth";
+import { useDispatch, useSelector } from "react-redux";
+import { emailAndPasswordLogin } from "../../actions/auth";
+import Alerta from "../Feedback/Alerta";
 
 const Login = () => {
   const [data, setData] = useState({
@@ -29,6 +24,7 @@ const Login = () => {
   });
 
   const { email, password } = data;
+
   const handleChange = (e) => {
     const value = e.target.value;
     setData({
@@ -38,16 +34,18 @@ const Login = () => {
   };
 
   const dispatch = useDispatch();
+  const loginError = useSelector((state) => state.auth.text);
 
-  const handleGoogleLogin = () => {
-    dispatch(googleLogin());
-  };
+  const [textError, setTextError] = useState("");
+
   const handleEmailLogin = (e) => {
     e.preventDefault();
-
-    if (!emailCorrecto(email)) return;
     dispatch(emailAndPasswordLogin(email, password));
   };
+
+  useEffect(() => {
+    setTextError(loginError);
+  }, [textError, loginError]);
 
   return (
     <>
@@ -79,15 +77,13 @@ const Login = () => {
                 name="password"
               ></FormInput>
               <FormButton type="submit">Login</FormButton>
-              <Text>Olvidaste tu contraseña?</Text>
-
-              <br />
-              <GoogleLoginButton
-                label="Ingresar con Google"
-                onClick={handleGoogleLogin}
-              />
             </Form>
           </FormContent>
+          {textError === undefined ? (
+            ""
+          ) : (
+            <Alerta text={textError} severity="error" />
+          )}
         </FormWrap>
       </Container>
     </>

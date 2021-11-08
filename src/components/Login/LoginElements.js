@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import GoogleButton from "react-google-button";
 
 export const Container = styled.div`
   min-height: 692px;
@@ -100,14 +99,4 @@ export const FormButton = styled.button`
   color: #fff;
   font-size: 20px;
   cursor: pointer;
-`;
-export const Text = styled.span`
-  text-align: center;
-  margin-top: 24px;
-  color: #fff;
-  font-size: 14px;
-`;
-
-export const GoogleLoginButton = styled(GoogleButton)`
-  width: auto;
 `;

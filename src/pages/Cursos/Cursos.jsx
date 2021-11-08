@@ -20,7 +20,12 @@ const Cursos = () => {
     <>
       <NavBar />
       <CircleProgressBar success={success} />
-      <Tabla headCells={headCells} rows={cursos} titulo="Cursos" />
+      <Tabla
+        headCells={headCells}
+        rows={cursos}
+        titulo="Cursos"
+        baseRedirect="/cursos/"
+      />
     </>
   );
 };

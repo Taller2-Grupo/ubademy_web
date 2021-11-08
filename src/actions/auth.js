@@ -1,14 +1,6 @@
 import { types } from "../types/types";
 
-import { firebase, googleAuthProvider } from "../firebase/config";
-
-/* Validadores */
-export const emailCorrecto = (email) => {
-  if (email.trim() === "" || !email.trim().includes("@")) {
-    return false;
-  }
-  return true;
-};
+import { firebase } from "../firebase/config";
 
 /* Login */
 export const login = (uid, displayName) => {
@@ -21,14 +13,12 @@ export const login = (uid, displayName) => {
   };
 };
 
-export const googleLogin = () => {
-  return (dispatch) => {
-    firebase
-      .auth()
-      .signInWithPopup(googleAuthProvider)
-      .then(({ user }) => {
-        dispatch(login(user.uid, user.displayName));
-      });
+export const logError = (text) => {
+  return {
+    type: types.error,
+    payload: {
+      text,
+    },
   };
 };
 
@@ -39,7 +29,8 @@ export const emailAndPasswordLogin = (email, password) => {
       .signInWithEmailAndPassword(email, password)
       .then(({ user }) => {
         dispatch(login(user.uid, user.displayName));
-      });
+      })
+      .catch((error) => dispatch(logError("Error al intentar loguearse")));
   };
 };
 

@@ -3,7 +3,7 @@ import Tabla from "../../components/Tabla/Tabla";
 import { headCells } from "./Data";
 import { NavBar } from "../../components";
 import CircleProgressBar from "../../components/Feedback/CircleProgressBar";
-import { obtenerUsuarios } from "../../services/Cursos";
+import { obtenerUsuarios } from "../../services/Usuarios";
 
 const Usuarios = () => {
   const [users, setUsers] = useState([]);
@@ -20,7 +20,12 @@ const Usuarios = () => {
     <>
       <NavBar />
       <CircleProgressBar success={success} />
-      <Tabla headCells={headCells} rows={users} titulo="Usuarios" />
+      <Tabla
+        headCells={headCells}
+        rows={users}
+        titulo="Usuarios"
+        baseRedirect="/usuarios/"
+      />
     </>
   );
 };

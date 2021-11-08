@@ -13,39 +13,20 @@ import HeaderTabla from "./HeaderTabla";
 import { stableSort, getComparator } from "./TablaElements";
 import dateFormat from "dateformat";
 import ToolbarTabla from "./ToolbarTabla";
+import { useHistory } from "react-router-dom";
 
-const Tabla = ({ headCells, rows, titulo }) => {
+const Tabla = ({ headCells, rows, titulo, baseRedirect }) => {
   const [order, setOrder] = useState("asc");
   const [orderBy, setOrderBy] = useState(headCells[0].id);
-  const [selected, setSelected] = useState([]);
   const [page, setPage] = useState(0);
   const [dense, setDense] = useState(false);
   const [rowsPerPage, setRowsPerPage] = useState(5);
+  const history = useHistory();
 
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === "asc";
     setOrder(isAsc ? "desc" : "asc");
     setOrderBy(property);
-  };
-
-  const handleClick = (id) => {
-    const selectedIndex = selected.indexOf(id);
-
-    let newSelected = [];
-
-    if (selectedIndex === -1) {
-      newSelected = newSelected.concat(selected, id);
-    } else if (selectedIndex === 0) {
-      newSelected = newSelected.concat(selected.slice(1));
-    } else if (selectedIndex === selected.length - 1) {
-      newSelected = newSelected.concat(selected.slice(0, -1));
-    } else if (selectedIndex > 0) {
-      newSelected = newSelected.concat(
-        selected.slice(0, selectedIndex),
-        selected.slice(selectedIndex + 1)
-      );
-    }
-    setSelected(newSelected);
   };
 
   const handleChangePage = (event, newPage) => {
@@ -87,7 +68,7 @@ const Tabla = ({ headCells, rows, titulo }) => {
                   return (
                     <TableRow
                       hover
-                      onClick={(event) => handleClick(row.id)}
+                      onClick={(event) => history.push(baseRedirect + row.id)}
                       tabIndex={-1}
                       key={row.id}
                     >
