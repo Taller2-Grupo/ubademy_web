@@ -1,14 +1,17 @@
 import { types } from "../types/types";
-
-import { firebase } from "../firebase/config";
+import jwt from "jwt-decode";
+import { loginUser } from "../services/Usuarios";
 
 /* Login */
-export const login = (uid, displayName) => {
+export const login = (token) => {
+  let user = jwt(token);
+  if (!user.scopes.includes("admin")) throw new Error();
+  localStorage.setItem("token", token);
   return {
     type: types.login,
     payload: {
-      uid,
-      displayName,
+      token: token,
+      username: user.sub,
     },
   };
 };
@@ -23,22 +26,28 @@ export const logError = (text) => {
 };
 
 export const emailAndPasswordLogin = (email, password) => {
+  const token = localStorage.getItem("token");
+
   return (dispatch) => {
-    firebase
-      .auth()
-      .signInWithEmailAndPassword(email, password)
-      .then(({ user }) => {
-        dispatch(login(user.uid, user.displayName));
-      })
-      .catch((error) => dispatch(logError("Usuario y/o contraseña invalida.")));
+    if (token !== null) dispatch(login(token));
+    else {
+      loginUser(email, password)
+        .then((res) => {
+          !res.ok
+            ? dispatch(logError("Usuario y/o contraseña invalida."))
+            : dispatch(login(res.data.access_token));
+        })
+        .catch(() =>
+          dispatch(logError("El usuario ingresado no es Administrador."))
+        );
+    }
   };
 };
 
 /* Logout */
 export const logout = () => {
-  return async (dispatch) => {
-    await firebase.auth().signOut();
-
+  localStorage.clear();
+  return (dispatch) => {
     dispatch({
       type: types.logout,
     });

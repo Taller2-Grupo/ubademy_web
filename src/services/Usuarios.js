@@ -24,3 +24,25 @@ export const obtenerUsuario = async (username) => {
     };
   }
 };
+
+export const loginUser = async (email, password) => {
+  try {
+    var bodyFormData = new FormData();
+    bodyFormData.append("username", email);
+    bodyFormData.append("password", password);
+
+    const res = await axios.post(
+      "https://ubademy-gateway-7.herokuapp.com/token",
+      bodyFormData
+    );
+    return {
+      ok: true,
+      data: res.data,
+    };
+  } catch (error) {
+    return {
+      ok: false,
+      data: "",
+    };
+  }
+};

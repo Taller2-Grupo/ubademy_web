@@ -1,39 +1,42 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Switch, BrowserRouter as Router } from "react-router-dom";
 import AuthRouter from "./AuthRouter";
-import { useEffect, useState } from "react";
-import { firebase } from "../firebase/config";
-import { login } from "../actions/auth";
-import { useDispatch } from "react-redux";
 import { Footer } from "../components";
 import ScrollToTop from "../components/ScrollToTop";
 import GlobalStyle from "../globalStyles";
 import PrivateRouter from "./PrivateRouter";
 import PublicRouter from "./PublicRouter";
 import LoginRouter from "./LoginRouter";
+import { useSelector } from "react-redux";
 
 const AppRouter = () => {
-  const dispatch = useDispatch();
-
-  const [log, setLog] = useState(false);
+  const [logSuccess, setLogSuccess] = useState(false);
+  const state = useSelector((state) => state.auth);
 
   useEffect(() => {
-    firebase.auth().onAuthStateChanged((user) => {
-      if (user) {
-        dispatch(login(user.uid, user.displayName));
-        setLog(true);
-      } else {
-        setLog(false);
-      }
-    });
-  }, [dispatch]);
+    const token = localStorage.getItem("token");
+    if (
+      (state.hasOwnProperty("token") && state.token !== null) ||
+      token !== null
+    ) {
+      setLogSuccess(true);
+    } else {
+      setLogSuccess(false);
+    }
+  }, [state]);
+
   return (
     <Router>
       <GlobalStyle />
       <ScrollToTop />
       <Switch>
-        <PublicRouter path="/auth" log={log} component={AuthRouter} />
-        <PrivateRouter path="/" log={log} component={LoginRouter} />
+        <PublicRouter
+          path="/auth"
+          log={logSuccess}
+          component={AuthRouter}
+          setLogSuccess={setLogSuccess}
+        />
+        <PrivateRouter path="/" log={logSuccess} component={LoginRouter} />
       </Switch>
       <Footer />
     </Router>
