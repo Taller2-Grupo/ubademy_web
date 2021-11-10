@@ -9,3 +9,33 @@ export const obtenerCursos = async () => {
     console.log(error);
   }
 };
+
+export const obtenerCurso = async (id) => {
+  try {
+    const res = await axios.get(baseCursosUrl + "cursos/" + id);
+    return {
+      ok: true,
+      data: res.data,
+    };
+  } catch (error) {
+    return {
+      ok: false,
+      data: "",
+    };
+  }
+};
+
+export const obtenerAlumnosCurso = async (id) => {
+  try {
+    const res = await axios.get(baseCursosUrl + "cursos/" + id + "/alumnos");
+    return {
+      ok: true,
+      data: res.data,
+    };
+  } catch (error) {
+    return {
+      ok: false,
+      data: "",
+    };
+  }
+};

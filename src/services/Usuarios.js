@@ -9,3 +9,18 @@ export const obtenerUsuarios = async () => {
     console.log(error);
   }
 };
+
+export const obtenerUsuario = async (username) => {
+  try {
+    const res = await axios.get(baseUsersUrl + "usuarios/" + username);
+    return {
+      ok: true,
+      data: res.data,
+    };
+  } catch (error) {
+    return {
+      ok: false,
+      data: "",
+    };
+  }
+};

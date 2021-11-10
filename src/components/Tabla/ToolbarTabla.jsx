@@ -24,7 +24,7 @@ const ToolbarTabla = ({ titulo }) => {
 };
 
 ToolbarTabla.propTypes = {
-  numSelected: PropTypes.number.isRequired,
+  titulo: PropTypes.string.isRequired,
 };
 
 export default ToolbarTabla;

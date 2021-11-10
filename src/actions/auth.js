@@ -30,7 +30,7 @@ export const emailAndPasswordLogin = (email, password) => {
       .then(({ user }) => {
         dispatch(login(user.uid, user.displayName));
       })
-      .catch((error) => dispatch(logError("Error al intentar loguearse")));
+      .catch((error) => dispatch(logError("Usuario y/o contraseña invalida.")));
   };
 };
 

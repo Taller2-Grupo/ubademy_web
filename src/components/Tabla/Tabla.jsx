@@ -70,7 +70,7 @@ const Tabla = ({ headCells, rows, titulo, baseRedirect }) => {
                       hover
                       onClick={(event) => history.push(baseRedirect + row.id)}
                       tabIndex={-1}
-                      key={row.id}
+                      key={index}
                     >
                       {headCells.map((column) => {
                         return (

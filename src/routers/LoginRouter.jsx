@@ -13,7 +13,11 @@ const LoginRouter = () => {
         <Route path="/cursos" exact component={Cursos}></Route>
         <Route path="/cursos/:id" exact component={CursoDetails}></Route>
         <Route path="/usuarios" exact component={Usuarios}></Route>
-        <Route path="/usuarios/:id" exact component={UsuarioDetails}></Route>
+        <Route
+          path="/usuarios/:username"
+          exact
+          component={UsuarioDetails}
+        ></Route>
         <Route path="/" exact component={Home}></Route>
       </Switch>
     </>
