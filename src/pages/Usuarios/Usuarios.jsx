@@ -25,6 +25,7 @@ const Usuarios = () => {
         rows={users}
         titulo="Usuarios"
         baseRedirect="/usuarios/"
+        idParam="username"
       />
     </>
   );

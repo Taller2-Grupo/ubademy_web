@@ -15,7 +15,7 @@ import dateFormat from "dateformat";
 import ToolbarTabla from "./ToolbarTabla";
 import { useHistory } from "react-router-dom";
 
-const Tabla = ({ headCells, rows, titulo, baseRedirect }) => {
+const Tabla = ({ headCells, rows, titulo, baseRedirect, idParam }) => {
   const [order, setOrder] = useState("asc");
   const [orderBy, setOrderBy] = useState(headCells[0].id);
   const [page, setPage] = useState(0);
@@ -68,7 +68,9 @@ const Tabla = ({ headCells, rows, titulo, baseRedirect }) => {
                   return (
                     <TableRow
                       hover
-                      onClick={(event) => history.push(baseRedirect + row.id)}
+                      onClick={(event) =>
+                        history.push(baseRedirect + row[idParam])
+                      }
                       tabIndex={-1}
                       key={index}
                     >

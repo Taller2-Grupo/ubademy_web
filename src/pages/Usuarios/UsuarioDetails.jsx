@@ -30,11 +30,11 @@ const UsuarioDetails = () => {
   useEffect(() => {
     let isMounted = true;
     obtenerUsuario(username).then((res) => {
-      if (isMounted && res.ok) {
-        setAlumno(res.data);
+      if (isMounted && res.ok && res.data.success) {
+        setAlumno(res.data.data);
         setSuccess(true);
       } else {
-        setError("Error al obtener el curso.");
+        setError("Error al obtener el usuario.");
       }
       return () => {
         isMounted = false;
@@ -51,25 +51,25 @@ const UsuarioDetails = () => {
           <FormContent>
             <Form>
               <Typography variant="h1" color="#74BBE6">
-                {alumno.Nombre + alumno.apellido}
+                {alumno.nombre + " " + alumno.apellido}
               </Typography>
               <Typography variant="h2" color="#a9b3c1">
                 {alumno.descripcion}
               </Typography>
               <Typography variant="h4" color="#696590">
                 Fecha Creacion:
-                {alumno.fechaCreacion === ""
+                {alumno.fechaCreacion === null
                   ? ""
                   : dateFormat(alumno.fechaCreacion, "yyyy-mm-dd hh:MM")}
               </Typography>
               <Typography variant="h4" color="#696590">
                 Fecha Actualizacion:
-                {alumno.fechaActualizacion === ""
+                {alumno.fechaActualizacion === null
                   ? ""
                   : dateFormat(alumno.fechaActualizacion, "yyyy-mm-dd hh:MM")}
               </Typography>
               <Typography variant="h4" color="#B9DEF2">
-                {alumno.esAdmin}
+                {alumno.esAdmin ? "Administrador" : "Usuario"}
               </Typography>
             </Form>
           </FormContent>
