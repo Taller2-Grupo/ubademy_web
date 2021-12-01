@@ -14,6 +14,8 @@ import { stableSort, getComparator } from "./TablaElements";
 import dateFormat from "dateformat";
 import ToolbarTabla from "./ToolbarTabla";
 import { useHistory } from "react-router-dom";
+import IconButton from "@mui/material/IconButton";
+import BlockIcon from "@mui/icons-material/Block";
 
 const Tabla = ({ headCells, rows, titulo, baseRedirect, idParam }) => {
   const [order, setOrder] = useState("asc");
@@ -89,6 +91,11 @@ const Tabla = ({ headCells, rows, titulo, baseRedirect, idParam }) => {
                           </TableCell>
                         );
                       })}
+                      <TableCell>
+                        <IconButton color="error" aria-label="delete">
+                          <BlockIcon />
+                        </IconButton>
+                      </TableCell>
                     </TableRow>
                   );
                 })}

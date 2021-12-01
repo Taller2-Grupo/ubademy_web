@@ -36,6 +36,7 @@ const HeaderTabla = ({ order, orderBy, onRequestSort, headCells }) => {
             </TableSortLabel>
           </TableCell>
         ))}
+        <TableCell />
       </TableRow>
     </TableHead>
   );
