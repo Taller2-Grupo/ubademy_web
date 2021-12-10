@@ -46,3 +46,30 @@ export const loginUser = async (email, password) => {
     };
   }
 };
+
+export const bloquearUsuario = async (id) => {
+  try {
+    await axios.patch(baseUsersUrl + "usuarios/bloquear/" + id);
+    return {
+      ok: true,
+    };
+  } catch (error) {
+    return {
+      ok: false,
+      data: error,
+    };
+  }
+};
+export const activarUsuario = async (id) => {
+  try {
+    await axios.patch(baseUsersUrl + "usuarios/activar/" + id);
+    return {
+      ok: true,
+    };
+  } catch (error) {
+    return {
+      ok: false,
+      data: error,
+    };
+  }
+};

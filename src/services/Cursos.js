@@ -39,3 +39,31 @@ export const obtenerAlumnosCurso = async (id) => {
     };
   }
 };
+
+export const bloquearCurso = async (id) => {
+  try {
+    await axios.patch(baseCursosUrl + "cursos/" + id + "/bloquear");
+    return {
+      ok: true,
+    };
+  } catch (error) {
+    return {
+      ok: false,
+      data: error,
+    };
+  }
+};
+
+export const activarCurso = async (id) => {
+  try {
+    await axios.patch(baseCursosUrl + "cursos/" + id + "/activar");
+    return {
+      ok: true,
+    };
+  } catch (error) {
+    return {
+      ok: false,
+      data: error,
+    };
+  }
+};

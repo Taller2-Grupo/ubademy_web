@@ -37,4 +37,10 @@ export const headCells = [
     disablePadding: false,
     label: "Fecha Modificación",
   },
+  {
+    id: "estado",
+    type: "string",
+    disablePadding: false,
+    label: "Estado",
+  },
 ];

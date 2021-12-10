@@ -16,6 +16,9 @@ import ToolbarTabla from "./ToolbarTabla";
 import { useHistory } from "react-router-dom";
 import IconButton from "@mui/material/IconButton";
 import BlockIcon from "@mui/icons-material/Block";
+import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
+import { bloquearCurso, activarCurso } from "../../services/Cursos";
+import { bloquearUsuario, activarUsuario } from "../../services/Usuarios";
 
 const Tabla = ({ headCells, rows, titulo, baseRedirect, idParam }) => {
   const [order, setOrder] = useState("asc");
@@ -44,6 +47,26 @@ const Tabla = ({ headCells, rows, titulo, baseRedirect, idParam }) => {
     setDense(target.checked);
   };
 
+  const bloqElement = (it, estado) => {
+    if (titulo === "Cursos") {
+      estado === "activo" ? bloquearCurso(it) : activarCurso(it);
+    } else {
+      estado === "activo" ? bloquearUsuario(it) : activarUsuario(it);
+    }
+    setTimeout(function() {
+      history.push(baseRedirect);
+    }, 250);
+  };
+
+  const handleClickRow = (event, id) => {
+    var iconClicked =
+      event.target.classList.contains("MuiSvgIcon-root") ||
+      event.target.classList.length === 0;
+    if (!iconClicked) {
+      history.push(baseRedirect + id);
+    }
+  };
+
   const emptyRows =
     page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
 
@@ -70,9 +93,7 @@ const Tabla = ({ headCells, rows, titulo, baseRedirect, idParam }) => {
                   return (
                     <TableRow
                       hover
-                      onClick={(event) =>
-                        history.push(baseRedirect + row[idParam])
-                      }
+                      onClick={(event) => handleClickRow(event, row[idParam])}
                       tabIndex={-1}
                       key={index}
                     >
@@ -92,9 +113,27 @@ const Tabla = ({ headCells, rows, titulo, baseRedirect, idParam }) => {
                         );
                       })}
                       <TableCell>
-                        <IconButton color="error" aria-label="delete">
-                          <BlockIcon />
-                        </IconButton>
+                        {row["estado"] === "eliminado" ? (
+                          ""
+                        ) : (
+                          <IconButton
+                            color={
+                              row["estado"] === "bloqueado"
+                                ? "success"
+                                : "error"
+                            }
+                            aria-label="delete"
+                            onClick={(event) =>
+                              bloqElement(row[idParam], row["estado"])
+                            }
+                          >
+                            {row["estado"] === "bloqueado" ? (
+                              <CheckCircleOutlineIcon />
+                            ) : (
+                              <BlockIcon />
+                            )}
+                          </IconButton>
+                        )}
                       </TableCell>
                     </TableRow>
                   );

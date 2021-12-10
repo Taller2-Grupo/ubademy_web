@@ -71,6 +71,9 @@ const UsuarioDetails = () => {
               <Typography variant="h4" color="#B9DEF2">
                 {alumno.esAdmin ? "Administrador" : "Usuario"}
               </Typography>
+              <Typography variant="h4" color="#59b0df">
+                Estado: {alumno.estado}
+              </Typography>
             </Form>
           </FormContent>
           {error === "" ? "" : <Alerta text={error} severity="error" />}
