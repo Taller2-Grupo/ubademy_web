@@ -4,6 +4,8 @@ import { headCells } from "./Data";
 import { NavBar } from "../../components";
 import CircleProgressBar from "../../components/Feedback/CircleProgressBar";
 import { obtenerUsuarios } from "../../services/Usuarios";
+import ModalUbademy from "../../components/Modal/ModalUbademy";
+import { Button } from "@mui/material";
 
 const Usuarios = () => {
   const [users, setUsers] = useState([]);
@@ -16,10 +18,26 @@ const Usuarios = () => {
     });
   }, []);
 
+  const [openModal, setOpenModal] = useState(false);
+
+  const handleOpenModal = () => setOpenModal(true);
+  const handleCloseModal = () => setOpenModal(false);
+
   return (
     <>
       <NavBar />
       <CircleProgressBar success={success} />
+      <br />
+      <div align="right">
+        <Button
+          variant="contained"
+          color="success"
+          onClick={() => handleOpenModal()}
+        >
+          Nuevo Administrador
+        </Button>
+      </div>
+      <ModalUbademy open={openModal} handleClose={handleCloseModal} />
       <Tabla
         headCells={headCells}
         rows={users}

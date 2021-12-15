@@ -73,3 +73,25 @@ export const activarUsuario = async (id) => {
     };
   }
 };
+
+export const crearUsuario = async (body) => {
+  try {
+    var bodyFormData = new FormData();
+    bodyFormData.append("username", body.email);
+    bodyFormData.append("password", body.password);
+    bodyFormData.append("nombre", body.nombre);
+    bodyFormData.append("apellido", body.apellido);
+    bodyFormData.append("esAdmin", true);
+
+    const res = await axios.post(baseUsersUrl + "usuarios/add");
+    return {
+      ok: true,
+      data: res.data,
+    };
+  } catch (error) {
+    return {
+      ok: false,
+      data: error,
+    };
+  }
+};
