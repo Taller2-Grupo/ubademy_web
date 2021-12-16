@@ -60,7 +60,9 @@ const ModalUbademy = ({ open, handleClose, setAlert }) => {
         text: resp.ok ? resp.data : resp.data,
         ok: resp.ok,
       });
-      history.push("/usuarios/");
+      setTimeout(function() {
+        history.push("/usuarios/");
+      }, 1000);
     });
 
     handleClose();
