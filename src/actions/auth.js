@@ -7,6 +7,7 @@ export const login = (token) => {
   let user = jwt(token);
   if (!user.scopes.includes("admin")) throw new Error();
   localStorage.setItem("token", token);
+  localStorage.setItem("username", user.sub);
   return {
     type: types.login,
     payload: {

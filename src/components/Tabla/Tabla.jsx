@@ -28,6 +28,8 @@ const Tabla = ({ headCells, rows, titulo, baseRedirect, idParam }) => {
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const history = useHistory();
 
+  const myUsername = localStorage.getItem("username");
+
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === "asc";
     setOrder(isAsc ? "desc" : "asc");
@@ -113,7 +115,8 @@ const Tabla = ({ headCells, rows, titulo, baseRedirect, idParam }) => {
                         );
                       })}
                       <TableCell>
-                        {row["estado"] === "eliminado" ? (
+                        {row["estado"] === "eliminado" ||
+                        row[idParam] === myUsername ? (
                           ""
                         ) : (
                           <IconButton

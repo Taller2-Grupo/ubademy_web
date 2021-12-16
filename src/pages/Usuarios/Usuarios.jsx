@@ -5,7 +5,8 @@ import { NavBar } from "../../components";
 import CircleProgressBar from "../../components/Feedback/CircleProgressBar";
 import { obtenerUsuarios } from "../../services/Usuarios";
 import ModalUbademy from "../../components/Modal/ModalUbademy";
-import { Button } from "@mui/material";
+import { Button, FormControl } from "@mui/material";
+import Alerta from "../../components/Feedback/Alerta";
 
 const Usuarios = () => {
   const [users, setUsers] = useState([]);
@@ -23,12 +24,18 @@ const Usuarios = () => {
   const handleOpenModal = () => setOpenModal(true);
   const handleCloseModal = () => setOpenModal(false);
 
+  const [alert, setAlert] = useState({
+    ok: false,
+    show: false,
+    text: "",
+  });
+
   return (
     <>
       <NavBar />
       <CircleProgressBar success={success} />
-      <br />
-      <div align="right">
+
+      <FormControl sx={{ m: 1, alignItems: "end", display: "flex" }}>
         <Button
           variant="contained"
           color="success"
@@ -36,8 +43,12 @@ const Usuarios = () => {
         >
           Nuevo Administrador
         </Button>
-      </div>
-      <ModalUbademy open={openModal} handleClose={handleCloseModal} />
+      </FormControl>
+      <ModalUbademy
+        open={openModal}
+        handleClose={handleCloseModal}
+        setAlert={setAlert}
+      />
       <Tabla
         headCells={headCells}
         rows={users}
@@ -45,6 +56,11 @@ const Usuarios = () => {
         baseRedirect="/usuarios/"
         idParam="username"
       />
+      {!alert.show ? (
+        ""
+      ) : (
+        <Alerta text={alert.text} severity={alert.ok ? "success" : "error"} />
+      )}
     </>
   );
 };

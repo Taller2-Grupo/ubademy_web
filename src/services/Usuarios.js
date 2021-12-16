@@ -1,5 +1,6 @@
 import axios from "axios";
 const baseUsersUrl = "https://ubademy-usuarios.herokuapp.com/";
+const baseGatewayUrl = "https://ubademy-gateway-7.herokuapp.com/";
 
 export const obtenerUsuarios = async () => {
   try {
@@ -31,10 +32,7 @@ export const loginUser = async (email, password) => {
     bodyFormData.append("username", email);
     bodyFormData.append("password", password);
 
-    const res = await axios.post(
-      "https://ubademy-gateway-7.herokuapp.com/token",
-      bodyFormData
-    );
+    const res = await axios.post(baseGatewayUrl + "token", bodyFormData);
     return {
       ok: true,
       data: res.data,
@@ -76,22 +74,24 @@ export const activarUsuario = async (id) => {
 
 export const crearUsuario = async (body) => {
   try {
-    var bodyFormData = new FormData();
-    bodyFormData.append("username", body.email);
-    bodyFormData.append("password", body.password);
-    bodyFormData.append("nombre", body.nombre);
-    bodyFormData.append("apellido", body.apellido);
-    bodyFormData.append("esAdmin", true);
+    var bodyReq = {
+      username: body.email,
+      password: body.password,
+      nombre: body.nombre,
+      apellido: body.apellido,
+      esAdmin: true,
+    };
 
-    const res = await axios.post(baseUsersUrl + "usuarios/add");
+    await axios.post(baseGatewayUrl + "usuarios/registrar", bodyReq);
+
     return {
       ok: true,
-      data: res.data,
+      data: "Administrador creado correctamente",
     };
   } catch (error) {
     return {
       ok: false,
-      data: error,
+      data: error.response.data.detail,
     };
   }
 };
