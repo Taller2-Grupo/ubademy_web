@@ -14,10 +14,10 @@ const Metricas = () => {
         </Box>
         <Grid container spacing={3} justifyContent="center">
           {/* Cards */}
-          <Grid item xs={12} md={4}>
+          <Grid item lg={3} sm={6} xl={3} xs={12}>
             <AppTotalUsers />
           </Grid>
-          <Grid item xs={12} md={4}>
+          <Grid item lg={3} sm={6} xl={3} xs={12}>
             <AppTotalCursos />
           </Grid>
           {/* 1er row Graficos */}
