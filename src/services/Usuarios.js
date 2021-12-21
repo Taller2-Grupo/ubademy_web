@@ -63,13 +63,13 @@ export const bloquearUsuario = async (id) => {
     const headers = obtenerHeader();
     await axios.patch(
       baseGatewayUrl + "redirect/usuarios/usuarios/bloquear/" + id,
+      null,
       headers
     );
     return {
       ok: true,
     };
   } catch (error) {
-    console.log(error.response);
     tokenVencido(error.response.status);
     return {
       ok: false,
@@ -82,6 +82,7 @@ export const activarUsuario = async (id) => {
     const headers = obtenerHeader();
     await axios.patch(
       baseGatewayUrl + "redirect/usuarios/usuarios/activar/" + id,
+      null,
       headers
     );
     return {

@@ -64,6 +64,7 @@ export const bloquearCurso = async (id) => {
     const headers = obtenerHeader();
     await axios.patch(
       baseGatewayUrl + "redirect/cursos/cursos/" + id + "/bloquear",
+      null,
       headers
     );
     return {
@@ -83,6 +84,7 @@ export const activarCurso = async (id) => {
     const headers = obtenerHeader();
     await axios.patch(
       baseGatewayUrl + "redirect/cursos/cursos/" + id + "/activar",
+      null,
       headers
     );
     return {

@@ -16,6 +16,7 @@ const UbademyCard = ({
   icon: Icon,
   porcentaje,
   colorIcon,
+  description,
   ...props
 }) => {
   return (
@@ -34,8 +35,8 @@ const UbademyCard = ({
             <Avatar
               sx={{
                 backgroundColor: colorIcon,
-                height: 56,
-                width: 56,
+                height: 40,
+                width: 40,
               }}
             >
               <Icon />
@@ -67,7 +68,7 @@ const UbademyCard = ({
               {porcentaje > 0 ? porcentaje : porcentaje * -1}%
             </Typography>
             <Typography color="textSecondary" variant="caption">
-              Desde la semana pasada
+              {description}
             </Typography>
           </Box>
         )}

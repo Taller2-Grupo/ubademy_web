@@ -1,6 +1,6 @@
 import React from "react";
 
-const TraficoDelDia = () => {
+const TraficoDelDia = (props) => {
   return <></>;
 };
 

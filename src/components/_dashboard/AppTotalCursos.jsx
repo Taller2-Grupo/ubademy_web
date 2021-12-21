@@ -15,10 +15,11 @@ const AppTotalCursos = () => {
   return (
     <UbademyCard
       valor={cursos}
-      titulo="CURSOS TOTAL"
+      titulo="CURSOS TOTALES"
       icon={SchoolIcon}
       porcentaje={0}
       colorIcon="#D14343"
+      description=""
     />
   );
 };

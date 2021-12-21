@@ -26,7 +26,10 @@ export const obtenerEventosDiarios = async (
   }
 };
 
-export const obtenerEventosHorarios = async (tipoEvento, diasAtras) => {
+export const obtenerEventosHorarios = async (
+  tipoEvento = null,
+  diasAtras = null
+) => {
   try {
     const headers = obtenerHeader();
     const path =

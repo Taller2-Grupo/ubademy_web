@@ -5,6 +5,8 @@ import AppTotalUsers from "../../components/_dashboard/AppTotalUsers";
 import AppTotalCursos from "../../components/_dashboard/AppTotalCursos";
 import TiposDeLogueos from "../../components/_dashboard/TiposDeLogueos";
 import TraficoDelDia from "../../components/_dashboard/TraficoDelDia";
+import AppTotalLoginGoogle from "../../components/_dashboard/AppTotalLoginGoogle";
+import AppTotalLoginCredenciales from "../../components/_dashboard/AppTotalLoginCredenciales";
 
 const Metricas = () => {
   return (
@@ -18,6 +20,12 @@ const Metricas = () => {
           {/* Cards */}
           <Grid item lg={3} sm={6} xl={3} xs={12}>
             <AppTotalUsers />
+          </Grid>
+          <Grid item lg={3} sm={6} xl={3} xs={12}>
+            <AppTotalLoginGoogle />
+          </Grid>
+          <Grid item lg={3} sm={6} xl={3} xs={12}>
+            <AppTotalLoginCredenciales />
           </Grid>
           <Grid item lg={3} sm={6} xl={3} xs={12}>
             <AppTotalCursos />

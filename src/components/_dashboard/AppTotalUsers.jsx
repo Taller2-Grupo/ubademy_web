@@ -30,8 +30,13 @@ const AppTotalUsers = () => {
       valor={users}
       titulo="USUARIOS TOTALES"
       icon={PeopleIcon}
-      porcentaje={(((users - usersWeek) / users) * 100).toFixed(2)}
+      porcentaje={
+        usersWeek === 0
+          ? 0
+          : (((users - usersWeek) / usersWeek) * 100).toFixed(2)
+      }
       colorIcon="#14B8A6"
+      description="Desde la semana pasada"
     />
   );
 };
