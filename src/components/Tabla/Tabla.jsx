@@ -14,9 +14,6 @@ import { stableSort, getComparator } from "./TablaElements";
 import dateFormat from "dateformat";
 import ToolbarTabla from "./ToolbarTabla";
 import { useHistory } from "react-router-dom";
-import IconButton from "@mui/material/IconButton";
-import BlockIcon from "@mui/icons-material/Block";
-import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import { bloquearCurso, activarCurso } from "../../services/Cursos";
 import { bloquearUsuario, activarUsuario } from "../../services/Usuarios";
 
@@ -61,9 +58,7 @@ const Tabla = ({ headCells, rows, titulo, baseRedirect, idParam }) => {
   };
 
   const handleClickRow = (event, id) => {
-    var iconClicked =
-      event.target.classList.contains("MuiSvgIcon-root") ||
-      event.target.classList.length === 0;
+    var iconClicked = event.target.classList.contains("MuiSwitch-input");
     if (!iconClicked) {
       history.push(baseRedirect + id);
     }
@@ -119,23 +114,13 @@ const Tabla = ({ headCells, rows, titulo, baseRedirect, idParam }) => {
                         row[idParam] === myUsername ? (
                           ""
                         ) : (
-                          <IconButton
-                            color={
-                              row["estado"] === "bloqueado"
-                                ? "success"
-                                : "error"
-                            }
-                            aria-label="delete"
-                            onClick={(event) =>
+                          <Switch
+                            checked={row["estado"] === "activo"}
+                            onChange={() =>
                               bloqElement(row[idParam], row["estado"])
                             }
-                          >
-                            {row["estado"] === "bloqueado" ? (
-                              <CheckCircleOutlineIcon />
-                            ) : (
-                              <BlockIcon />
-                            )}
-                          </IconButton>
+                            inputProps={{ "aria-label": "controlled" }}
+                          />
                         )}
                       </TableCell>
                     </TableRow>

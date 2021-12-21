@@ -5,6 +5,7 @@ import UbademyCard from "../Card/UbademyCard";
 
 const AppTotalCursos = () => {
   const [cursos, setCursos] = useState(0);
+
   useEffect(() => {
     obtenerCursos().then((res) => {
       setCursos(res.length);
@@ -16,7 +17,7 @@ const AppTotalCursos = () => {
       valor={cursos}
       titulo="CURSOS TOTAL"
       icon={SchoolIcon}
-      porcentaje={-8}
+      porcentaje={0}
       colorIcon="#D14343"
     />
   );

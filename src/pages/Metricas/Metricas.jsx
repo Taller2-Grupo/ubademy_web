@@ -3,6 +3,8 @@ import { NavBar } from "../../components";
 import { Grid, Typography, Box, Container } from "@mui/material";
 import AppTotalUsers from "../../components/_dashboard/AppTotalUsers";
 import AppTotalCursos from "../../components/_dashboard/AppTotalCursos";
+import TiposDeLogueos from "../../components/_dashboard/TiposDeLogueos";
+import TraficoDelDia from "../../components/_dashboard/TraficoDelDia";
 
 const Metricas = () => {
   return (
@@ -22,19 +24,19 @@ const Metricas = () => {
           </Grid>
           {/* 1er row Graficos */}
           <Grid item xs={12} md={8}>
-            Grafico 1
+            Grafico de barras o algo
           </Grid>
           <Grid item xs={12} md={4}>
-            Pie chart 1
+            <TiposDeLogueos sx={{ height: "100%" }} />
           </Grid>
 
           {/* 2da row Graficos */}
           <Grid item xs={12} md={8}>
-            Grafico 2
+            <TraficoDelDia />
           </Grid>
 
           <Grid item xs={12} md={4}>
-            Pie chart 2
+            Pie chart o alguna otra cosa
           </Grid>
         </Grid>
       </Container>

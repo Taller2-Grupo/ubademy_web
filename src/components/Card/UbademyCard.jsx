@@ -42,31 +42,35 @@ const UbademyCard = ({
             </Avatar>
           </Grid>
         </Grid>
-        <Box
-          sx={{
-            pt: 2,
-            display: "flex",
-            alignItems: "center",
-          }}
-        >
-          {porcentaje > 0 ? (
-            <ArrowUpwardIcon color="success" />
-          ) : (
-            <ArrowDownwardIcon color="error" />
-          )}
-          <Typography
-            color={porcentaje > 0 ? "#2e7d32" : "error"}
+        {porcentaje === 0 ? (
+          ""
+        ) : (
+          <Box
             sx={{
-              mr: 1,
+              pt: 2,
+              display: "flex",
+              alignItems: "center",
             }}
-            variant="body2"
           >
-            {porcentaje > 0 ? porcentaje : porcentaje * -1}%
-          </Typography>
-          <Typography color="textSecondary" variant="caption">
-            Desde la semana pasada
-          </Typography>
-        </Box>
+            {porcentaje > 0 ? (
+              <ArrowUpwardIcon color="success" />
+            ) : (
+              <ArrowDownwardIcon color="error" />
+            )}
+            <Typography
+              color={porcentaje > 0 ? "#2e7d32" : "error"}
+              sx={{
+                mr: 1,
+              }}
+              variant="body2"
+            >
+              {porcentaje > 0 ? porcentaje : porcentaje * -1}%
+            </Typography>
+            <Typography color="textSecondary" variant="caption">
+              Desde la semana pasada
+            </Typography>
+          </Box>
+        )}
       </CardContent>
     </Card>
   );
