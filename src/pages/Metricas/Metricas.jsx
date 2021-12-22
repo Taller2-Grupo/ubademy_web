@@ -5,6 +5,7 @@ import AppTotalUsers from "../../components/_dashboard/AppTotalUsers";
 import AppTotalCursos from "../../components/_dashboard/AppTotalCursos";
 import TiposDeLogueos from "../../components/_dashboard/TiposDeLogueos";
 import TraficoDelDia from "../../components/_dashboard/TraficoDelDia";
+import EventosPorHoraDelDia from "../../components/_dashboard/EventosPorHoraDelDia";
 import AppTotalLoginGoogle from "../../components/_dashboard/AppTotalLoginGoogle";
 import AppTotalLoginCredenciales from "../../components/_dashboard/AppTotalLoginCredenciales";
 
@@ -31,20 +32,20 @@ const Metricas = () => {
             <AppTotalCursos />
           </Grid>
           {/* 1er row Graficos */}
-          <Grid item xs={12} md={8}>
+          <Grid item lg={8} md={7} xl={9} xs={12}>
             Grafico de barras o algo
           </Grid>
-          <Grid item xs={12} md={4}>
+          <Grid item lg={4} md={5} xl={3} xs={12}>
             <TiposDeLogueos sx={{ height: "100%" }} />
           </Grid>
 
           {/* 2da row Graficos */}
-          <Grid item xs={12} md={8}>
-            <TraficoDelDia />
+          <Grid item lg={8} md={7} xl={9} xs={12}>
+            <EventosPorHoraDelDia />
           </Grid>
 
-          <Grid item xs={12} md={4}>
-            Pie chart o alguna otra cosa
+          <Grid item lg={4} md={5} xl={3} xs={12}>
+            <TraficoDelDia sx={{ height: "100%" }} />
           </Grid>
         </Grid>
       </Container>
