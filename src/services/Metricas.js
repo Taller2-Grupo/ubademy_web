@@ -18,10 +18,10 @@ export const obtenerEventosDiarios = async (
       data: res.data.data,
     };
   } catch (error) {
-    tokenVencido(error.response.status);
+    if (error.hasOwnProperty("response")) tokenVencido(error.response.status);
     return {
       ok: false,
-      data: error.detail,
+      data: error,
     };
   }
 };
@@ -42,10 +42,10 @@ export const obtenerEventosHorarios = async (
       data: res.data.data,
     };
   } catch (error) {
-    tokenVencido(error.response.status);
+    if (error.hasOwnProperty("response")) tokenVencido(error.response.status);
     return {
       ok: false,
-      data: error.detail,
+      data: error,
     };
   }
 };

@@ -1,34 +1,31 @@
 import React, { useEffect, useState } from "react";
-import { obtenerEventosDiarios } from "../../services/Metricas";
+import { obtenerUsuarios } from "../../services/Usuarios";
 import { Box, Card, CardContent, CardHeader, Divider } from "@mui/material";
 import Chart from "react-apexcharts";
 
-const labels = [
-  { key: "USUARIO_CREADO", label: "Usuarios creados" },
-  { key: "USUARIO_BLOQUEADO", label: "Usuarios bloqueados" },
-  { key: "LOGIN_GOOGLE", label: "Login con google" },
-  { key: "LOGIN_CREDENCIALES", label: "Login con credenciales" },
-];
-
-const TraficoDelDia = (props) => {
+const Suscripciones = (props) => {
   const [series, setSeries] = useState([{ label: "", value: "0" }]);
 
-  // diasAtras = 5 --> para ver data
-
   useEffect(() => {
-    let actual = [];
-    labels.forEach((it) => {
-      obtenerEventosDiarios(it.key, 0).then((res) => {
-        const value = res.data.reduce((acc, value) => acc + value.cantidad, 0);
-        if (value !== 0) {
-          actual.push({
-            label: it.label,
-            value: value,
-          });
+    obtenerUsuarios().then(({ data }) => {
+      let resp = data.reduce((acc, value) => {
+        if (!acc[value.tipo_suscripcion]) {
+          acc[value.tipo_suscripcion] = 1;
+        } else {
+          acc[value.tipo_suscripcion]++;
         }
-      });
+        return acc;
+      }, {});
+
+      let actual = [];
+      for (var key in resp) {
+        actual.push({
+          label: key,
+          value: resp[key],
+        });
+      }
+      if (actual.length > 0) setSeries(actual);
     });
-    if (actual.length > 0) setSeries(actual);
   }, []);
 
   const options = {
@@ -43,7 +40,7 @@ const TraficoDelDia = (props) => {
 
   return (
     <Card {...props}>
-      <CardHeader title="Eventos del día" />
+      <CardHeader title="Suscripciones" />
       <Divider />
       <CardContent>
         <Box
@@ -61,7 +58,7 @@ const TraficoDelDia = (props) => {
               width={300}
             />
           ) : (
-            "No se encontraron eventos"
+            "No hay datos"
           )}
         </Box>
       </CardContent>
@@ -69,4 +66,4 @@ const TraficoDelDia = (props) => {
   );
 };
 
-export default TraficoDelDia;
+export default Suscripciones;

@@ -11,7 +11,7 @@ export const obtenerCursos = async () => {
     );
     return res.data;
   } catch (error) {
-    tokenVencido(error.response.status);
+    if (error.hasOwnProperty("response")) tokenVencido(error.response.status);
     return {
       ok: false,
       data: error,
@@ -31,7 +31,7 @@ export const obtenerCurso = async (id) => {
       data: res.data,
     };
   } catch (error) {
-    tokenVencido(error.response.status);
+    if (error.hasOwnProperty("response")) tokenVencido(error.response.status);
     return {
       ok: false,
       data: error,
@@ -51,7 +51,7 @@ export const obtenerAlumnosCurso = async (id) => {
       data: res.data,
     };
   } catch (error) {
-    tokenVencido(error.response.status);
+    if (error.hasOwnProperty("response")) tokenVencido(error.response.status);
     return {
       ok: false,
       data: error,
@@ -71,7 +71,7 @@ export const bloquearCurso = async (id) => {
       ok: true,
     };
   } catch (error) {
-    tokenVencido(error.response.status);
+    if (error.hasOwnProperty("response")) tokenVencido(error.response.status);
     return {
       ok: false,
       data: error,
@@ -91,7 +91,7 @@ export const activarCurso = async (id) => {
       ok: true,
     };
   } catch (error) {
-    tokenVencido(error.response.status);
+    if (error.hasOwnProperty("response")) tokenVencido(error.response.status);
     return {
       ok: false,
       data: error,

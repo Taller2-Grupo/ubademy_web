@@ -11,7 +11,7 @@ export const obtenerUsuarios = async () => {
     );
     return res.data;
   } catch (error) {
-    tokenVencido(error.response.status);
+    if (error.hasOwnProperty("response")) tokenVencido(error.response.status);
     return {
       ok: false,
       data: error,
@@ -31,7 +31,7 @@ export const obtenerUsuario = async (username) => {
       data: res.data,
     };
   } catch (error) {
-    tokenVencido(error.response.status);
+    if (error.hasOwnProperty("response")) tokenVencido(error.response.status);
     return {
       ok: false,
       data: error,
@@ -70,7 +70,7 @@ export const bloquearUsuario = async (id) => {
       ok: true,
     };
   } catch (error) {
-    tokenVencido(error.response.status);
+    if (error.hasOwnProperty("response")) tokenVencido(error.response.status);
     return {
       ok: false,
       data: error,
@@ -89,7 +89,7 @@ export const activarUsuario = async (id) => {
       ok: true,
     };
   } catch (error) {
-    tokenVencido(error.response.status);
+    if (error.hasOwnProperty("response")) tokenVencido(error.response.status);
     return {
       ok: false,
       data: error,

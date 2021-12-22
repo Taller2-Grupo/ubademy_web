@@ -3,7 +3,7 @@ import { NavBar } from "../../components";
 import { Grid, Typography, Box, Container } from "@mui/material";
 import AppTotalUsers from "../../components/_dashboard/AppTotalUsers";
 import AppTotalCursos from "../../components/_dashboard/AppTotalCursos";
-import TiposDeLogueos from "../../components/_dashboard/TiposDeLogueos";
+import Suscripciones from "../../components/_dashboard/Suscripciones";
 import TraficoDelDia from "../../components/_dashboard/TraficoDelDia";
 import EventosPorHoraDelDia from "../../components/_dashboard/EventosPorHoraDelDia";
 import AppTotalLoginGoogle from "../../components/_dashboard/AppTotalLoginGoogle";
@@ -37,7 +37,7 @@ const Metricas = () => {
             <EventosDelAnio />
           </Grid>
           <Grid item lg={4} md={5} xl={3} xs={12}>
-            <TiposDeLogueos sx={{ height: "100%" }} />
+            <Suscripciones sx={{ height: "100%" }} />
           </Grid>
 
           {/* 2da row Graficos */}
