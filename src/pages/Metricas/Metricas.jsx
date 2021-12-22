@@ -8,6 +8,7 @@ import TraficoDelDia from "../../components/_dashboard/TraficoDelDia";
 import EventosPorHoraDelDia from "../../components/_dashboard/EventosPorHoraDelDia";
 import AppTotalLoginGoogle from "../../components/_dashboard/AppTotalLoginGoogle";
 import AppTotalLoginCredenciales from "../../components/_dashboard/AppTotalLoginCredenciales";
+import EventosDelAnio from "../../components/_dashboard/EventosDelAnio";
 
 const Metricas = () => {
   return (
@@ -33,7 +34,7 @@ const Metricas = () => {
           </Grid>
           {/* 1er row Graficos */}
           <Grid item lg={8} md={7} xl={9} xs={12}>
-            Grafico de barras o algo
+            <EventosDelAnio />
           </Grid>
           <Grid item lg={4} md={5} xl={3} xs={12}>
             <TiposDeLogueos sx={{ height: "100%" }} />

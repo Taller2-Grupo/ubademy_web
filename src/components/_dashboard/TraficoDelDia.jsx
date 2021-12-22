@@ -13,10 +13,12 @@ const labels = [
 const TraficoDelDia = (props) => {
   const [series, setSeries] = useState([{ label: "", value: "0" }]);
 
+  // hoy = 5 --> para ver data
+
   useEffect(() => {
     let actual = [];
     labels.forEach((it) => {
-      obtenerEventosDiarios(it.key, 5).then((res) => {
+      obtenerEventosDiarios(it.key, 0).then((res) => {
         const value = res.data.reduce(
           (accumulator, currentValue) => accumulator + currentValue.cantidad,
           0
@@ -58,11 +60,11 @@ const TraficoDelDia = (props) => {
               options={options}
               series={series.map((x) => x.value)}
               type="pie"
-              height={350}
-              width={350}
+              height={300}
+              width={300}
             />
           ) : (
-            ""
+            "No se encontraron eventos"
           )}
         </Box>
       </CardContent>
