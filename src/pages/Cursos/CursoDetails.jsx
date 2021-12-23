@@ -35,7 +35,9 @@ const CursoDetails = () => {
   const [error, setError] = useState("");
 
   useEffect(() => {
+    let mounted = false;
     obtenerCurso(id).then((res) => {
+      if (mounted) return;
       if (res.ok) {
         setCurso(res.data);
         obtenerAlumnosCurso(id).then((resp) => {
@@ -48,6 +50,9 @@ const CursoDetails = () => {
         setError("Error al obtener el curso.");
       }
     });
+    return () => {
+      mounted = true;
+    };
   }, [id, alumnos]);
 
   return (

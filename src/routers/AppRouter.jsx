@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Switch, BrowserRouter as Router } from "react-router-dom";
 import AuthRouter from "./AuthRouter";
 import { Footer } from "../components";
-import ScrollToTop from "../components/ScrollToTop";
 import GlobalStyle from "../globalStyles";
 import PrivateRouter from "./PrivateRouter";
 import PublicRouter from "./PublicRouter";
@@ -14,6 +13,8 @@ const AppRouter = () => {
   const state = useSelector((state) => state.auth);
 
   useEffect(() => {
+    let mounted = false;
+    if (mounted) return;
     const token = localStorage.getItem("token");
     if (
       (state.hasOwnProperty("token") && state.token !== null) ||
@@ -23,12 +24,14 @@ const AppRouter = () => {
     } else {
       setLogSuccess(false);
     }
+    return () => {
+      mounted = true;
+    };
   }, [state]);
 
   return (
     <Router>
       <GlobalStyle />
-      <ScrollToTop />
       <Switch>
         <PublicRouter
           path="/auth"

@@ -28,7 +28,9 @@ const EventosPorHoraDelDia = () => {
   const [series, setSeries] = useState([]);
 
   useEffect(() => {
+    let mounted = false;
     obtenerEventosHorarios(null, hoy.getHours()).then((res) => {
+      if (mounted) return;
       const resp = res.data.sort(sortByHour).reduce((acc, value) => {
         let name = labels[value.tipoEvento].name;
         let chart = labels[value.tipoEvento].chart;
@@ -63,6 +65,9 @@ const EventosPorHoraDelDia = () => {
       }
       if (actual.length > 0) setSeries(actual);
     });
+    return () => {
+      mounted = true;
+    };
   }, []);
 
   const options = {

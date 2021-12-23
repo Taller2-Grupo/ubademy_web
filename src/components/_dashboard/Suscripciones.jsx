@@ -9,7 +9,9 @@ const Suscripciones = (props) => {
   const [series, setSeries] = useState([]);
 
   useEffect(() => {
+    let mounted = false;
     obtenerUsuarios().then(({ data }) => {
+      if (mounted) return;
       let resp = data.reduce((acc, value) => {
         if (!acc[value.tipo_suscripcion]) {
           acc[value.tipo_suscripcion] = 1;
@@ -28,6 +30,9 @@ const Suscripciones = (props) => {
       }
       if (actual.length > 0) setSeries(actual);
     });
+    return () => {
+      mounted = true;
+    };
   }, []);
 
   const options = {

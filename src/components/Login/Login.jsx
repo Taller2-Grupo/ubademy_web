@@ -43,7 +43,12 @@ const Login = () => {
   };
 
   useEffect(() => {
+    let mounted = false;
+    if (mounted) return;
     setTextError(loginError);
+    return () => {
+      mounted = true;
+    };
   }, [textError, loginError]);
 
   return (

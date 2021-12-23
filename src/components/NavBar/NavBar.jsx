@@ -37,7 +37,8 @@ const NavBar = () => {
 
   useEffect(() => {
     let isMounted = false;
-    if (isMounted) showButton();
+    if (isMounted) return;
+    showButton();
     return () => {
       isMounted = true;
     };

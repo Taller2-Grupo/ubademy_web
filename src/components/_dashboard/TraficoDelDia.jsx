@@ -16,8 +16,10 @@ const TraficoDelDia = (props) => {
   const [series, setSeries] = useState([]);
 
   useEffect(() => {
+    let mounted = false;
     labels.forEach((it) => {
       obtenerEventosDiarios(it.key, 0).then((res) => {
+        if (mounted) return;
         const value = res.data.reduce((acc, value) => acc + value.cantidad, 0);
         if (value !== 0) {
           setSeries((series) => [
@@ -30,6 +32,9 @@ const TraficoDelDia = (props) => {
         }
       });
     });
+    return () => {
+      mounted = true;
+    };
   }, []);
 
   const options = {

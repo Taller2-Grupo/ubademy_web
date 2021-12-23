@@ -9,7 +9,9 @@ const AppTotalUsers = () => {
   const [usersWeek, setUsersWeek] = useState(0);
 
   useEffect(() => {
+    let mounted = false;
     obtenerEventosDiarios("USUARIO_CREADO", 7).then((res) => {
+      if (mounted) return;
       setUsersWeek(
         res.data.reduce(
           (accumulator, currentValue) => accumulator + currentValue.cantidad,
@@ -17,12 +19,20 @@ const AppTotalUsers = () => {
         )
       );
     });
+    return () => {
+      mounted = true;
+    };
   }, []);
 
   useEffect(() => {
+    let mounted = false;
     obtenerUsuarios().then(({ data }) => {
+      if (mounted) return;
       setUsers(data.length);
     });
+    return () => {
+      mounted = true;
+    };
   }, []);
 
   return (

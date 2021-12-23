@@ -28,18 +28,19 @@ const UsuarioDetails = () => {
   const [error, setError] = useState("");
 
   useEffect(() => {
-    let isMounted = true;
+    let isMounted = false;
     obtenerUsuario(username).then((res) => {
-      if (isMounted && res.ok && res.data.success) {
+      if (isMounted) return;
+      if (res.ok && res.data.success) {
         setAlumno(res.data.data);
         setSuccess(true);
       } else {
         setError("Error al obtener el usuario.");
       }
-      return () => {
-        isMounted = false;
-      };
     });
+    return () => {
+      isMounted = true;
+    };
   }, [username]);
 
   return (

@@ -10,10 +10,15 @@ const Cursos = () => {
   const [success, setSuccess] = useState(false);
 
   useEffect(() => {
+    let mounted = false;
     obtenerCursos().then((res) => {
+      if (mounted) return;
       setCursos(res);
       setSuccess((success) => !success);
     });
+    return () => {
+      mounted = true;
+    };
   }, []);
 
   return (

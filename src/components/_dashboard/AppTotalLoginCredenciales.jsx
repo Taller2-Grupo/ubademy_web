@@ -8,7 +8,9 @@ const AppTotalLoginCredenciales = () => {
   const [loginAyer, setLoginAyer] = useState(0);
 
   useEffect(() => {
+    let mounted = false;
     obtenerEventosDiarios("LOGIN_CREDENCIALES", 1).then((res) => {
+      if (mounted) return;
       setLoginAyer(
         res.data.reduce(
           (accumulator, currentValue) => accumulator + currentValue.cantidad,
@@ -16,10 +18,15 @@ const AppTotalLoginCredenciales = () => {
         )
       );
     });
+    return () => {
+      mounted = true;
+    };
   }, []);
 
   useEffect(() => {
+    let mounted = false;
     obtenerEventosDiarios("LOGIN_CREDENCIALES", 0).then((res) => {
+      if (mounted) return;
       setLoginHoy(
         res.data.reduce(
           (accumulator, currentValue) => accumulator + currentValue.cantidad,
@@ -27,6 +34,9 @@ const AppTotalLoginCredenciales = () => {
         )
       );
     });
+    return () => {
+      mounted = true;
+    };
   }, []);
 
   return (

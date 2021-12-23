@@ -8,7 +8,9 @@ const AppTotalLoginGoogle = () => {
   const [loginAyer, setLoginAyer] = useState(0);
 
   useEffect(() => {
+    let mounted = false;
     obtenerEventosDiarios("LOGIN_GOOGLE", 1).then((res) => {
+      if (mounted) return;
       setLoginAyer(
         res.data.reduce(
           (accumulator, currentValue) => accumulator + currentValue.cantidad,
@@ -16,10 +18,16 @@ const AppTotalLoginGoogle = () => {
         )
       );
     });
+
+    return () => {
+      mounted = true;
+    };
   }, []);
 
   useEffect(() => {
+    let mounted = false;
     obtenerEventosDiarios("LOGIN_GOOGLE", 0).then((res) => {
+      if (mounted) return;
       setLoginHoy(
         res.data.reduce(
           (accumulator, currentValue) => accumulator + currentValue.cantidad,
@@ -27,6 +35,9 @@ const AppTotalLoginGoogle = () => {
         )
       );
     });
+    return () => {
+      mounted = true;
+    };
   }, []);
   return (
     <UbademyCard

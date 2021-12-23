@@ -13,10 +13,16 @@ const Usuarios = () => {
   const [success, setSuccess] = useState(false);
 
   useEffect(() => {
+    let mounted = false;
     obtenerUsuarios().then(({ data }) => {
+      if (mounted) return;
       setUsers(data);
       setSuccess((success) => !success);
     });
+
+    return () => {
+      mounted = true;
+    };
   }, []);
 
   const [openModal, setOpenModal] = useState(false);

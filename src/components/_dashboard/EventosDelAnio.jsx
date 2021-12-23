@@ -48,8 +48,10 @@ const EventosDelAnio = () => {
   const [series, setSeries] = useState([]);
 
   useEffect(() => {
+    let mounted = false;
     labels.forEach((it) => {
       obtenerEventosDiarios(it.key, 365).then((res) => {
+        if (mounted) return;
         const resp = res.data
           .filter((x) => new Date(x.fecha).getFullYear() <= hoy.getFullYear())
           .sort(sortByMonth)
@@ -77,6 +79,9 @@ const EventosDelAnio = () => {
         ]);
       });
     });
+    return () => {
+      mounted = true;
+    };
   }, []);
 
   const options = {

@@ -7,9 +7,15 @@ const AppTotalCursos = () => {
   const [cursos, setCursos] = useState(0);
 
   useEffect(() => {
+    let mounted = false;
     obtenerCursos().then((res) => {
+      if (mounted) return;
       setCursos(res.length);
     });
+
+    return () => {
+      mounted = true;
+    };
   }, []);
 
   return (
