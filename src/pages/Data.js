@@ -17,7 +17,7 @@ export const homeSignUp = {
   img: homeImagen,
   alt: "Image Home",
   start: true,
-  to: "/login",
+  to: "/metricas",
 };
 
 export const homeCursos = {
@@ -35,7 +35,7 @@ export const homeCursos = {
   img: cursosImagen,
   alt: "Imagen Cursos",
   start: false,
-  to: "/login",
+  to: "/cursos",
 };
 
 export const homeUsuarios = {
@@ -53,5 +53,5 @@ export const homeUsuarios = {
   img: usuariosImagen,
   alt: "Imagen Usuarios",
   start: true,
-  to: "/login",
+  to: "/usuarios",
 };

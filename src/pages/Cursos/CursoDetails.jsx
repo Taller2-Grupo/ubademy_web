@@ -9,11 +9,11 @@ import {
 } from "../../components/Details/DetailsElements";
 import Tabla from "../../components/Tabla/Tabla";
 import { obtenerAlumnosCurso, obtenerCurso } from "../../services/Cursos";
-import { headCells } from "../Usuarios/Data";
 import { NavBar } from "../../components";
 import CircleProgressBar from "../../components/Feedback/CircleProgressBar";
 import Alerta from "../../components/Feedback/Alerta";
 import dateFormat from "dateformat";
+import { headCells } from "../Usuarios/Data";
 
 const CursoDetails = () => {
   const { id } = useParams();
