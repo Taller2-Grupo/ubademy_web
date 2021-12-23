@@ -43,4 +43,10 @@ export const headCells = [
     disablePadding: false,
     label: "Estado",
   },
+  {
+    id: "tipo_suscripcion",
+    type: "string",
+    disablePadding: false,
+    label: "Suscripcion",
+  },
 ];

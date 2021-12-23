@@ -50,7 +50,7 @@ export const FooterLinkTittle = styled.h2`
   margin-bottom: 16px;
 `;
 
-export const FooterLink = styled(Link)`
+export const FooterLink = styled.a`
   color: grey;
   text-decoration: none;
   margin-bottom: 0.5rem;

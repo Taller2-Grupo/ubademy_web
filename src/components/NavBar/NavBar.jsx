@@ -71,6 +71,10 @@ const NavBar = () => {
               <NavItem>
                 <NavLinks to="/usuarios">Usuarios</NavLinks>
               </NavItem>
+
+              <NavItem>
+                <NavLinks to="/metricas">Métricas</NavLinks>
+              </NavItem>
             </NavMenu>
             <NavMenuUser>
               <NavItemBtn onClick={handleLogout}>

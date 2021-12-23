@@ -25,16 +25,24 @@ const Footer = () => {
         <FooterLinksWrapper>
           <FooterLinkItems>
             <FooterLinkTittle>About Us</FooterLinkTittle>
-            <FooterLink to="/sign-up">Como empezar</FooterLink>
-            <FooterLink to="/quienes-somos">Quiénes somos?</FooterLink>
+            <FooterLink
+              href="https://join.slack.com/t/7552-tallerii/shared_invite/zt-vech5d0j-hFH781ZCHC7MTA4B8LOLSA"
+              target="_blank"
+            >
+              Quiénes somos?
+            </FooterLink>
           </FooterLinkItems>
           <FooterLinkItems>
             <FooterLinkTittle>Contacto</FooterLinkTittle>
-            <FooterLink to="/contacto">Contactenos</FooterLink>
+            <FooterLink href="https://discord.gg/XUXjfN53" target="_blank">
+              Contactenos
+            </FooterLink>
           </FooterLinkItems>
           <FooterLinkItems>
             <FooterLinkTittle>Documentación</FooterLinkTittle>
-            <FooterLink to="/manual-de-usuario">Manual de Usuario</FooterLink>
+            <FooterLink href="https://taller2-grupo.github.io/" target="_blank">
+              Manual de Usuario
+            </FooterLink>
           </FooterLinkItems>
         </FooterLinksWrapper>
       </FooterLinksContainer>

@@ -5,6 +5,7 @@ import Cursos from "../pages/Cursos/Cursos";
 import Usuarios from "../pages/Usuarios/Usuarios";
 import CursoDetails from "../pages/Cursos/CursoDetails";
 import UsuarioDetails from "../pages/Usuarios/UsuarioDetails";
+import Metricas from "../pages/Metricas/Metricas";
 
 const LoginRouter = () => {
   return (
@@ -18,6 +19,7 @@ const LoginRouter = () => {
           exact
           component={UsuarioDetails}
         ></Route>
+        <Route path="/metricas" exact component={Metricas}></Route>
         <Route path="/" exact component={Home}></Route>
       </Switch>
     </>

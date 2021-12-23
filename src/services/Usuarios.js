@@ -1,27 +1,40 @@
 import axios from "axios";
-const baseUsersUrl = "https://ubademy-usuarios.herokuapp.com/";
+import { tokenVencido, obtenerHeader } from "./Data";
 const baseGatewayUrl = "https://ubademy-gateway-7.herokuapp.com/";
 
 export const obtenerUsuarios = async () => {
   try {
-    const res = await axios.get(baseUsersUrl + "usuarios");
+    const headers = obtenerHeader();
+    const res = await axios.get(
+      baseGatewayUrl + "redirect/usuarios/usuarios",
+      headers
+    );
     return res.data;
   } catch (error) {
-    console.log(error);
+    if (error.hasOwnProperty("response")) tokenVencido(error.response.status);
+    return {
+      ok: false,
+      data: error,
+    };
   }
 };
 
 export const obtenerUsuario = async (username) => {
   try {
-    const res = await axios.get(baseUsersUrl + "usuarios/" + username);
+    const headers = obtenerHeader();
+    const res = await axios.get(
+      baseGatewayUrl + "redirect/usuarios/usuarios/" + username,
+      headers
+    );
     return {
       ok: true,
       data: res.data,
     };
   } catch (error) {
+    if (error.hasOwnProperty("response")) tokenVencido(error.response.status);
     return {
       ok: false,
-      data: "",
+      data: error,
     };
   }
 };
@@ -40,18 +53,24 @@ export const loginUser = async (email, password) => {
   } catch (error) {
     return {
       ok: false,
-      data: "",
+      data: error,
     };
   }
 };
 
 export const bloquearUsuario = async (id) => {
   try {
-    await axios.patch(baseUsersUrl + "usuarios/bloquear/" + id);
+    const headers = obtenerHeader();
+    await axios.patch(
+      baseGatewayUrl + "redirect/usuarios/usuarios/bloquear/" + id,
+      null,
+      headers
+    );
     return {
       ok: true,
     };
   } catch (error) {
+    if (error.hasOwnProperty("response")) tokenVencido(error.response.status);
     return {
       ok: false,
       data: error,
@@ -60,11 +79,17 @@ export const bloquearUsuario = async (id) => {
 };
 export const activarUsuario = async (id) => {
   try {
-    await axios.patch(baseUsersUrl + "usuarios/activar/" + id);
+    const headers = obtenerHeader();
+    await axios.patch(
+      baseGatewayUrl + "redirect/usuarios/usuarios/activar/" + id,
+      null,
+      headers
+    );
     return {
       ok: true,
     };
   } catch (error) {
+    if (error.hasOwnProperty("response")) tokenVencido(error.response.status);
     return {
       ok: false,
       data: error,
