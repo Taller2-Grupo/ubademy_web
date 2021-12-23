@@ -28,7 +28,6 @@ const AppTotalLoginGoogle = () => {
       );
     });
   }, []);
-
   return (
     <UbademyCard
       valor={loginHoy}

@@ -11,7 +11,9 @@ export const obtenerEventosDiarios = async (
     const path =
       "redirect/usuarios/eventos/diarios" +
       (tipoEvento === null ? "" : "?tipoEvento=" + tipoEvento) +
-      (diasAtras === null ? "" : "&diasAtras=" + diasAtras);
+      (diasAtras === null
+        ? ""
+        : `${tipoEvento === null ? "?" : "&"}diasAtras=${diasAtras}`);
     const res = await axios.get(baseGatewayUrl + path, headers);
     return {
       ok: true,
@@ -28,14 +30,16 @@ export const obtenerEventosDiarios = async (
 
 export const obtenerEventosHorarios = async (
   tipoEvento = null,
-  diasAtras = null
+  horasAtras = null
 ) => {
   try {
     const headers = obtenerHeader();
     const path =
       "redirect/usuarios/eventos/por_hora" +
       (tipoEvento === null ? "" : "?tipoEvento=" + tipoEvento) +
-      (diasAtras === null ? "" : "&horasAtras=" + diasAtras);
+      (horasAtras === null
+        ? ""
+        : `${tipoEvento === null ? "?" : "&"}horasAtras=${horasAtras}`);
     const res = await axios.get(baseGatewayUrl + path, headers);
     return {
       ok: true,

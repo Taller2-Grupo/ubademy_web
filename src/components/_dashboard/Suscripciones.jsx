@@ -2,9 +2,11 @@ import React, { useEffect, useState } from "react";
 import { obtenerUsuarios } from "../../services/Usuarios";
 import { Box, Card, CardContent, CardHeader, Divider } from "@mui/material";
 import Chart from "react-apexcharts";
+import { fNumber } from "../../utils/formatNumber";
+import ChartWrapperStyle from "./ChartWrapperStyle";
 
 const Suscripciones = (props) => {
-  const [series, setSeries] = useState([{ label: "", value: "0" }]);
+  const [series, setSeries] = useState([]);
 
   useEffect(() => {
     obtenerUsuarios().then(({ data }) => {
@@ -36,6 +38,26 @@ const Suscripciones = (props) => {
     legend: {
       position: "bottom",
     },
+    dataLabels: {
+      enabled: true,
+      dropShadow: { enabled: false },
+      background: {
+        enabled: true,
+        foreColor: "#000",
+      },
+    },
+    tooltip: {
+      fillSeriesColor: false,
+      y: {
+        formatter: (seriesName) => fNumber(seriesName),
+        title: {
+          formatter: (seriesName) => `#${seriesName}`,
+        },
+      },
+    },
+    plotOptions: {
+      pie: { donut: { labels: { show: false } } },
+    },
   };
 
   return (
@@ -45,18 +67,23 @@ const Suscripciones = (props) => {
       <CardContent>
         <Box
           sx={{
-            height: 400,
+            height: 380,
             position: "relative",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
           }}
         >
-          {series[0].label !== "" ? (
-            <Chart
-              options={options}
-              series={series.map((x) => x.value)}
-              type="pie"
-              height={300}
-              width={300}
-            />
+          {series.length > 0 ? (
+            <ChartWrapperStyle>
+              <Chart
+                options={options}
+                series={series.map((x) => x.value)}
+                type="pie"
+                width={364}
+                height={364}
+              />
+            </ChartWrapperStyle>
           ) : (
             "No hay datos"
           )}

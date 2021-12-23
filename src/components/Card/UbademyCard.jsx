@@ -9,6 +9,7 @@ import {
   Avatar,
   Box,
 } from "@mui/material";
+import HorizontalRuleIcon from "@mui/icons-material/HorizontalRule";
 
 const UbademyCard = ({
   titulo,
@@ -55,11 +56,19 @@ const UbademyCard = ({
           >
             {porcentaje > 0 ? (
               <ArrowUpwardIcon color="success" />
-            ) : (
+            ) : porcentaje < 0 ? (
               <ArrowDownwardIcon color="error" />
+            ) : (
+              <HorizontalRuleIcon color="primary" />
             )}
             <Typography
-              color={porcentaje > 0 ? "#2e7d32" : "error"}
+              color={
+                porcentaje > 0
+                  ? "#2e7d32"
+                  : porcentaje < 0
+                  ? "error"
+                  : "primary"
+              }
               sx={{
                 mr: 1,
               }}

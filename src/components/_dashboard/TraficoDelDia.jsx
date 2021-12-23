@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { obtenerEventosDiarios } from "../../services/Metricas";
 import { Box, Card, CardContent, CardHeader, Divider } from "@mui/material";
 import Chart from "react-apexcharts";
+import { fNumber } from "../../utils/formatNumber";
+import ChartWrapperStyle from "./ChartWrapperStyle";
 
 const labels = [
   { key: "USUARIO_CREADO", label: "Usuarios creados" },
@@ -11,24 +13,23 @@ const labels = [
 ];
 
 const TraficoDelDia = (props) => {
-  const [series, setSeries] = useState([{ label: "", value: "0" }]);
-
-  // diasAtras = 5 --> para ver data
+  const [series, setSeries] = useState([]);
 
   useEffect(() => {
-    let actual = [];
     labels.forEach((it) => {
       obtenerEventosDiarios(it.key, 0).then((res) => {
         const value = res.data.reduce((acc, value) => acc + value.cantidad, 0);
         if (value !== 0) {
-          actual.push({
-            label: it.label,
-            value: value,
-          });
+          setSeries((series) => [
+            ...series,
+            {
+              label: it.label,
+              value: value,
+            },
+          ]);
         }
       });
     });
-    if (actual.length > 0) setSeries(actual);
   }, []);
 
   const options = {
@@ -39,27 +40,52 @@ const TraficoDelDia = (props) => {
     legend: {
       position: "bottom",
     },
+    dataLabels: {
+      enabled: true,
+      dropShadow: { enabled: false },
+      background: {
+        enabled: true,
+        foreColor: "#000",
+      },
+    },
+    tooltip: {
+      fillSeriesColor: false,
+      y: {
+        formatter: (seriesName) => fNumber(seriesName),
+        title: {
+          formatter: (seriesName) => `#${seriesName}`,
+        },
+      },
+    },
+    plotOptions: {
+      pie: { donut: { labels: { show: false } } },
+    },
   };
 
   return (
-    <Card {...props}>
+    <Card {...props} sx={{ marginBottom: 5 }}>
       <CardHeader title="Eventos del día" />
       <Divider />
       <CardContent>
         <Box
           sx={{
-            height: 400,
+            height: 364,
             position: "relative",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
           }}
         >
-          {series[0].label !== "" ? (
-            <Chart
-              options={options}
-              series={series.map((x) => x.value)}
-              type="pie"
-              height={300}
-              width={300}
-            />
+          {series.length > 0 ? (
+            <ChartWrapperStyle>
+              <Chart
+                options={options}
+                series={series.map((x) => x.value)}
+                type="pie"
+                width={364}
+                height={364}
+              />
+            </ChartWrapperStyle>
           ) : (
             "No se encontraron eventos"
           )}

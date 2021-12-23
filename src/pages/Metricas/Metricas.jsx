@@ -33,20 +33,20 @@ const Metricas = () => {
             <AppTotalCursos />
           </Grid>
           {/* 1er row Graficos */}
-          <Grid item lg={8} md={7} xl={9} xs={12}>
+          <Grid item xs={12} md={6} lg={8}>
             <EventosDelAnio />
           </Grid>
-          <Grid item lg={4} md={5} xl={3} xs={12}>
-            <Suscripciones sx={{ height: "100%" }} />
+          <Grid item xs={12} md={6} lg={4}>
+            <Suscripciones />
           </Grid>
 
           {/* 2da row Graficos */}
-          <Grid item lg={8} md={7} xl={9} xs={12}>
+          <Grid item xs={12} md={6} lg={8}>
             <EventosPorHoraDelDia />
           </Grid>
 
-          <Grid item lg={4} md={5} xl={3} xs={12}>
-            <TraficoDelDia sx={{ height: "100%" }} />
+          <Grid item xs={12} md={6} lg={4}>
+            <TraficoDelDia />
           </Grid>
         </Grid>
       </Container>
