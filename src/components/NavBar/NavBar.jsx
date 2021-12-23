@@ -36,7 +36,11 @@ const NavBar = () => {
   };
 
   useEffect(() => {
-    showButton();
+    let isMounted = true;
+    if (isMounted) showButton();
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
   window.addEventListener("resize", showButton);
